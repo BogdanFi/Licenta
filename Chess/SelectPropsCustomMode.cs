@@ -12,9 +12,13 @@ namespace Chess
 {
     public partial class SelectPropsCustomMode : Form
     {
+        private DateleNouluiJoc[] DatePiesa;
+
+        public DateleNouluiJoc [] Info { get { return DatePiesa; } }
         public SelectPropsCustomMode()
         {
             InitializeComponent();
+            DatePiesa = new DateleNouluiJoc[6];
             Sidepanel.Height = button1.Height;
             Sidepanel.Top = button1.Top;
             pionCustomControl1.BringToFront();
@@ -79,7 +83,14 @@ namespace Chess
                             {
                                 if (regeCustomControl.Info.Save == true)
                                 {
-                                    MessageBox.Show("Felicitari");
+                                    DatePiesa[0] = pionCustomControl1.Info;
+                                    DatePiesa[1] = turaCustomControl.Info;
+                                    DatePiesa[2] = calCustomControl.Info;
+                                    DatePiesa[3] = nebunCustomControl.Info;
+                                    DatePiesa[4] = reginaCustomControl.Info;
+                                    DatePiesa[5] = regeCustomControl.Info;
+                                    this.DialogResult = DialogResult.OK;
+                                    this.Close();
                                 }
                                 else
                                     MessageBox.Show("Nu ați salvat încă mutările regelui");

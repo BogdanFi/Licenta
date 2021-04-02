@@ -179,6 +179,7 @@
             this.radioButton1.TabIndex = 0;
             this.radioButton1.Text = "Yes";
             this.radioButton1.UseVisualStyleBackColor = true;
+            
             // 
             // groupBox2
             // 

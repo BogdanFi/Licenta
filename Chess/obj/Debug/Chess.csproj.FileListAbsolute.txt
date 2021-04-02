@@ -11,3 +11,4 @@ C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.Form1.resources
 C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.DialogJocNou.resources
 C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.SelectPropsCustomMode.resources
 C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.PionCustomControl.resources
+C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.SelectWINCustomMode.resources

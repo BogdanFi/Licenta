@@ -85,6 +85,12 @@
     <Compile Include="SelectPropsCustomMode.Designer.cs">
       <DependentUpon>SelectPropsCustomMode.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectWINCustomMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectWINCustomMode.Designer.cs">
+      <DependentUpon>SelectWINCustomMode.cs</DependentUpon>
+    </Compile>
     <Compile Include="TipuriDePiese.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -127,6 +133,9 @@
     </Compile>
     <EmbeddedResource Include="SelectPropsCustomMode.resx">
       <DependentUpon>SelectPropsCustomMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectWINCustomMode.resx">
+      <DependentUpon>SelectWINCustomMode.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

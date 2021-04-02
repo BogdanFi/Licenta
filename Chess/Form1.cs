@@ -31,9 +31,18 @@ namespace Chess
                     this.Hide();
                     Global.GlobalCuloare = dialogjocnou.Info.PlayerColor;
                     Global.GlobalMarime = dialogjocnou.Info.SizeTable;
-                    SelectPropsCustomMode dialogProps = new SelectPropsCustomMode();
-                    dialogProps.ShowDialog();
-                    this.Close();
+                    {
+                        SelectWINCustomMode dialogWin = new SelectWINCustomMode();
+                        dialogWin.ShowDialog();
+                    }
+                    /*SelectPropsCustomMode dialogProps = new SelectPropsCustomMode();
+                    var result = dialogProps.ShowDialog();
+                    if ( result == DialogResult.OK)
+                    {
+                        SelectWINCustomMode dialogWin = new SelectWINCustomMode();
+                    }
+                    */
+                    
                 }    
             }
 

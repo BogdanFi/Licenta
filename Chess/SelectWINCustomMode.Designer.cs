@@ -37,6 +37,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // panel1
@@ -74,6 +80,7 @@
             this.button1.Text = "    Pion";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
@@ -92,6 +99,7 @@
             this.button2.Text = "    Tură";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
@@ -110,6 +118,7 @@
             this.button3.Text = "    Cal";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
@@ -128,6 +137,7 @@
             this.button4.Text = "    Nebun";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
@@ -146,6 +156,7 @@
             this.button5.Text = "    Regina";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
@@ -164,6 +175,7 @@
             this.button6.Text = "    Rege";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // SelectWINCustomMode
@@ -185,6 +197,83 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            //
+            // Random
+            //
+            
+           
+            radioButton5.Checked = true;
+            radioButton5.Font = new System.Drawing.Font("Verdana", 10.25F);
+            radioButton5.Location = new System.Drawing.Point(7, 66);
+            radioButton5.Name = "radioButton2";
+            radioButton5.Size = new System.Drawing.Size(47, 22);
+            radioButton5.TabIndex = 1;
+            radioButton5.TabStop = true;
+            radioButton5.Text = "No";
+            radioButton5.UseVisualStyleBackColor = true;
+
+            
+            radioButton6.AutoSize = true;
+            radioButton6.Font = new System.Drawing.Font("Verdana", 10.25F);
+            radioButton6.Location = new System.Drawing.Point(7, 37);
+            radioButton6.Name = "radioButton1";
+            radioButton6.Size = new System.Drawing.Size(51, 22);
+            radioButton6.TabIndex = 0;
+            radioButton6.Text = "Yes";
+            radioButton6.UseVisualStyleBackColor = true;
+
+            // 
+            // radioButton3
+            // 
+            radioButton3.AutoSize = true;
+            radioButton3.Checked = true;
+            radioButton3.Font = new System.Drawing.Font("Verdana", 11.25F);
+            radioButton3.Location = new System.Drawing.Point(7, 66);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new System.Drawing.Size(47, 22);
+            radioButton3.TabIndex = 1;
+            radioButton3.TabStop = true;
+            radioButton3.Text = "No";
+            radioButton3.UseVisualStyleBackColor = true;
+            radioButton3.Click += new System.EventHandler(radioButton3_Click);
+            // 
+            // radioButton4
+            // 
+            radioButton4.AutoSize = true;
+            radioButton4.Font = new System.Drawing.Font("Verdana", 11.25F);
+            radioButton4.Location = new System.Drawing.Point(7, 37);
+            radioButton4.Name = "radioButton4";
+            radioButton4.Size = new System.Drawing.Size(51, 22);
+            radioButton4.TabIndex = 0;
+            radioButton4.Text = "Yes";
+            radioButton4.UseVisualStyleBackColor = true;
+            radioButton4.Click += new System.EventHandler(radioButton4_Click);
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Checked = true;
+            radioButton2.Font = new System.Drawing.Font("Verdana", 11.25F);
+            radioButton2.Location = new System.Drawing.Point(7, 56);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new System.Drawing.Size(47, 22);
+            radioButton2.TabIndex = 1;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "No";
+            radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.Click += new System.EventHandler(radioButton2_Click);
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Font = new System.Drawing.Font("Verdana", 11.25F);
+            radioButton1.Location = new System.Drawing.Point(7, 27);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new System.Drawing.Size(51, 22);
+            radioButton1.TabIndex = 0;
+            radioButton1.Text = "Yes";
+            radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.Click += new System.EventHandler(radioButton1_Click);
         }
 
         #endregion
@@ -197,5 +286,11 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

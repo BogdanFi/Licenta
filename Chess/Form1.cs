@@ -30,20 +30,24 @@ namespace Chess
                 {
                     this.Hide();
                     Global.GlobalCuloare = dialogjocnou.Info.PlayerColor;
-                    Global.GlobalMarime = dialogjocnou.Info.SizeTable;
-                    {
-                        SelectWINCustomMode dialogWin = new SelectWINCustomMode();
-                        dialogWin.ShowDialog();
-                    }
-                    /*SelectPropsCustomMode dialogProps = new SelectPropsCustomMode();
+                    Global.GlobalMarimeLinii = dialogjocnou.Info.SizeTableL;
+                    Global.GlobalMarimeColoane = dialogjocnou.Info.SizeTableC;
+                    /*
+                     {
+                         SelectWINCustomMode dialogWin = new SelectWINCustomMode();
+                         dialogWin.ShowDialog();
+                     }
+                     */
+                    SelectPropsCustomMode dialogProps = new SelectPropsCustomMode();
                     var result = dialogProps.ShowDialog();
                     if ( result == DialogResult.OK)
                     {
                         SelectWINCustomMode dialogWin = new SelectWINCustomMode();
+                        dialogWin.ShowDialog();
                     }
-                    */
                     
-                }    
+
+                }
             }
 
             

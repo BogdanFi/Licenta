@@ -12,10 +12,41 @@ namespace Chess
 {
     public partial class SelectWINCustomMode : Form
     {
-        private string[] piese = { "Pionul", "Tura", "Calul", "Nebunul", "Regina", "Regele" };
+        private string[] piese ;
+        static string piesa;
+        public PictureBox[] pieceBorder;
+        public Piece[] pieceIdBoard;
+
+        GroupBox groupBox1 = new GroupBox();
+        GroupBox groupBox2 = new GroupBox();
+        GroupBox groupBox3 = new GroupBox();
+        Panel panel2 = new Panel();
+        Panel panel3 = new Panel();
+        
         public SelectWINCustomMode()
         {
             InitializeComponent();
+            panel2.Controls.Add(panel3);
+            panel2.AutoScrollMinSize = new Size(0, 1200);
+            
+            DateleNouluiJoc[] a = SelectPropsCustomMode.Info;
+            piese = new string[a.Length];
+            for(int i=0;i<a.Length;i++)
+            {
+                piese.Append(a[i].NumelePiesei);
+                if (String.Equals(a[i].NumelePiesei, "Pionul"))
+                    button1.Visible = true;
+                if (String.Equals(a[i].NumelePiesei, "Tura"))
+                    button2.Visible = true;
+                if (String.Equals(a[i].NumelePiesei, "Calul"))
+                    button3.Visible = true;
+                if (String.Equals(a[i].NumelePiesei, "Nebunul"))
+                    button4.Visible = true;
+                if (String.Equals(a[i].NumelePiesei, "Regina"))
+                    button5.Visible = true;
+                if (String.Equals(a[i].NumelePiesei, "Regele"))
+                    button6.Visible = true;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -57,35 +88,19 @@ namespace Chess
             button4.Hide();
             button5.Hide();
             button6.Hide();
+            if (i == 0)
+                piesa = String.Copy("Pionul");
+            if (i==1)
+                piesa = String.Copy("Tura");
+            if (i==2)
+                piesa = String.Copy("Calul");
+            if (i==3)
+                piesa = String.Copy("Nebunul");
+            if (i==4)
+                piesa = String.Copy("Regina");
+            if (i==5)
+                piesa = String.Copy("Regele");
 
-            GroupBox groupBox1 = new GroupBox();
-            // 
-            // radioButton2
-            // 
-            RadioButton radioButton2 = new RadioButton();
-            radioButton2.AutoSize = true;
-            radioButton2.Checked = true;
-            radioButton2.Font = new System.Drawing.Font("Verdana", 11.25F);
-            radioButton2.Location = new System.Drawing.Point(7, 56);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new System.Drawing.Size(47, 22);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "No";
-            radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            RadioButton radioButton1 = new RadioButton();
-            radioButton1.AutoSize = true;
-            radioButton1.Font = new System.Drawing.Font("Verdana", 11.25F);
-            radioButton1.Location = new System.Drawing.Point(7, 27);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new System.Drawing.Size(51, 22);
-            radioButton1.TabIndex = 0;
-            radioButton1.Text = "Yes";
-            radioButton1.UseVisualStyleBackColor = true;
-            radioButton1.Click += new System.EventHandler(radioButton1_Click);
 
             groupBox1.Controls.Add(radioButton2);
             groupBox1.Controls.Add(radioButton1);
@@ -94,37 +109,11 @@ namespace Chess
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new System.Drawing.Size(650, 100);
             groupBox1.TabStop = false;
-            groupBox1.Text = "Doriți ca partida să se termine când " + piese[i] + " este într-o poziție de șah?";
+            groupBox1.Text = piesa + " atacată determină sfârșitul partidei?";
 
             this.Controls.Add(groupBox1);
 
-            GroupBox groupBox2 = new GroupBox();
-            // 
-            // radioButton2
-            // 
-            RadioButton radioButton3 = new RadioButton();
-            radioButton3.AutoSize = true;
-            radioButton3.Checked = true;
-            radioButton3.Font = new System.Drawing.Font("Verdana", 11.25F);
-            radioButton3.Location = new System.Drawing.Point(7, 66);
-            radioButton3.Name = "radioButton2";
-            radioButton3.Size = new System.Drawing.Size(47, 22);
-            radioButton3.TabIndex = 1;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "No";
-            radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            RadioButton radioButton4 = new RadioButton();
-            radioButton4.AutoSize = true;
-            radioButton4.Font = new System.Drawing.Font("Verdana", 11.25F);
-            radioButton4.Location = new System.Drawing.Point(7, 37);
-            radioButton4.Name = "radioButton1";
-            radioButton4.Size = new System.Drawing.Size(51, 22);
-            radioButton4.TabIndex = 0;
-            radioButton4.Text = "Yes";
-            radioButton4.UseVisualStyleBackColor = true;
+
 
             groupBox2.Controls.Add(radioButton3);
             groupBox2.Controls.Add(radioButton4);
@@ -133,14 +122,157 @@ namespace Chess
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new System.Drawing.Size(650, 100);
             groupBox2.TabStop = false;
-            groupBox2.Text = "Doriți ca partida să se termine când " + piese[i] + " ajunge pe o anumită poziție de pe tabla de șah?";
+            groupBox2.Text = "Poziția " + piesa + " determină sfârșitul partidei?";
 
             this.Controls.Add(groupBox2);
+            radioButton2_Click(this, new EventArgs());
         }
+
 
         private void radioButton1_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
+
+
+            if (this.Controls.Contains(panel2))
+            {
+                this.Controls.Remove(panel2);
+            }
+            groupBox3.Controls.Add(radioButton5);
+            groupBox3.Controls.Add(radioButton6);
+            groupBox3.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            groupBox3.Location = new System.Drawing.Point(700, 195);
+            groupBox3.Name = "groupBox2";
+            groupBox3.Size = new System.Drawing.Size(650, 100);
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Piesa atacată și adversarul mută?";
+
+            this.Controls.Add(groupBox3);
+            groupBox2.Location = new Point(650, 325);
+            radioButton1.Checked = true;
+            radioButton2.Checked = false;
+            radioButton4.Checked = false;
+            radioButton3.Checked = true;
+            
+            
+        }
+
+        private void radioButton2_Click(object sender, EventArgs e)
+        {
+            groupBox2.Location = new Point(650, 195);
+            this.Controls.Remove(groupBox3);
+            radioButton4_Click(sender, e);
+            radioButton1.Checked = false;
+            radioButton2.Checked = true;
+            radioButton4.Checked = true;
+            radioButton3.Checked = false;
+            
+        }
+        private void radioButton4_Click(object sender, EventArgs e)
+        {
+            groupBox2.Location = new Point(650, 195);
+            this.Controls.Remove(groupBox3);
+            radioButton1.Checked = false;
+            radioButton2.Checked = true;
+            radioButton4.Checked = true;
+            radioButton3.Checked = false;
+            this.Controls.Add(panel2);
+            int BoardSizeL = CalculeazaMarime(Global.GlobalMarimeLinii);
+            int BoardSizeC = CalculeazaMarime(Global.GlobalMarimeColoane);
+            panel2.Location = new Point(607,300);
+            panel3.Location = new System.Drawing.Point(43, 56);
+            panel3.Size = new Size(BoardSizeC * 84, BoardSizeL * 84);
+            panel2.Size = new Size(BoardSizeC * 84 + 117, BoardSizeL * 84 + 117);
+            CreareMarcajeLaterale(BoardSizeL, BoardSizeC);
+            panel3.BackgroundImage = Image.FromFile(@"C:\Users\rebeg\source\repos\Chess\Resources\board 10x10.png");
+            panel3.BackgroundImageLayout = ImageLayout.None;
+
+            pieceBorder = new PictureBox[BoardSizeC * BoardSizeL];
+            pieceIdBoard = new Piece[BoardSizeC * BoardSizeL];
+            for (int index = 0; index < BoardSizeC * BoardSizeL; index++)
+            {
+                
+                pieceBorder[index] = new PictureBox
+                {
+                    Location = new Point((index % BoardSizeC) * 84, BoardSizeL * 84 - (84 * (index / BoardSizeC + 1))),
+                    Size = new Size(84, 84),
+                    BackColor = Color.Transparent
+                };
+                this.panel3.Controls.Add(pieceBorder[index]);
+                pieceIdBoard[index] = new Piece
+                {
+                    Location = new Point((index % BoardSizeC) * 84, BoardSizeL * 84 - (84 * (index / BoardSizeC + 1))),
+                    Size = new Size(84, 84),
+                };
+                pieceIdBoard[index].Click += new EventHandler(MouseClick);
+                this.panel3.Controls.Add(pieceIdBoard[index]);
+                pieceIdBoard[index].BackgroundImageLayout = ImageLayout.Center;
+                pieceIdBoard[index].BringToFront();
+                pieceIdBoard[index].BackColor = Color.Transparent;
+
+                pieceIdBoard[index].PieceName = "-";
+                pieceIdBoard[index].PiecePosition = index;
+                pieceIdBoard[index].BackColor = Color.Transparent;
+                pieceIdBoard[index].PieceValue = 0;
+                pieceIdBoard[index].Enumarare = 0;
+
+               
+            }
+
+        }
+        private void radioButton3_Click(object sender, EventArgs e)
+        {
+            radioButton1_Click(sender, e);
+            radioButton1.Checked = true;
+            radioButton2.Checked = false;
+            radioButton4.Checked = false;
+            radioButton3.Checked = true;
+            this.Controls.Remove(panel2);
+        }
+        public int CalculeazaMarime(MarimeTable globalMarime)
+        {
+            if (globalMarime == MarimeTable.Patru)
+                return 4;
+            if (globalMarime == MarimeTable.Cinci)
+                return 5;
+            if (globalMarime == MarimeTable.Sase)
+                return 6;
+            if (globalMarime == MarimeTable.Sapte)
+                return 7;
+            if (globalMarime == MarimeTable.Opt)
+                return 8;
+            if (globalMarime == MarimeTable.Noua)
+                return 9;
+            return 10;
+        }
+        private void CreareMarcajeLaterale(int boardSizeL, int boardSizeC)
+        {
+            for (int i = 1; i <= boardSizeL; i++)
+            {
+                Label l = new Label();
+                panel2.Controls.Add(l);
+                l.AutoSize = true;
+                l.Size = new Size(13, 13);
+                l.Name = "panell" + (boardSizeL - i + 1);
+                l.Text = (boardSizeL - i + 1).ToString();
+                l.Location = new Point(25, 98 + 84 * (i - 1));
+            }
+            for (int i = 1; i <= boardSizeC; i++)
+            {
+                Label l1 = new Label();
+                panel2.Controls.Add(l1);
+                l1.AutoSize = true;
+                l1.Size = new Size(13, 13);
+                l1.Name = "panel1" + (boardSizeC - i + 1);
+                l1.Text = Char.ToString((char)(96 + i));
+                l1.Location = new Point(85 + 84 * (i - 1), boardSizeL * 84 + 74);
+            }
+        }
+        private void MouseClick(object sender, EventArgs e)
+        {
+            Piece piece = sender as Piece;
+            pieceBorder[piece.PiecePosition].BackColor = Color.Yellow;
+            pieceIdBoard[piece.PiecePosition].BackColor = Color.Yellow;
         }
     }
 }

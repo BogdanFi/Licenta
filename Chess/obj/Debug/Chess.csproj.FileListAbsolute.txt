@@ -12,3 +12,9 @@ C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.DialogJocNou.resources
 C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.SelectPropsCustomMode.resources
 C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.PionCustomControl.resources
 C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.SelectWINCustomMode.resources
+C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.CalCustomControl.resources
+C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.NebunCustomControl.resources
+C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.RegeCustomControl.resources
+C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.ReginaCustomControl.resources
+C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.TuraCustomControl.resources
+C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.ExportGame.resources

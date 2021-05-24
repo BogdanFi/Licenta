@@ -9,17 +9,23 @@ namespace Chess
     static class Global
     {
         private static CuloarePiesa _Culoare;
-        private static MarimeTable _Marime;
+        private static MarimeTable _MarimeColoane;
+        private static MarimeTable _MarimeLinii;
         public static CuloarePiesa GlobalCuloare
         {
             get { return _Culoare; }
             set { _Culoare = value; }
         }
 
-        public static MarimeTable GlobalMarime
+        public static MarimeTable GlobalMarimeLinii
         {
-            get { return _Marime; }
-            set { _Marime = value; }
+            get { return _MarimeLinii; }
+            set { _MarimeLinii = value; }
+        }
+        public static MarimeTable GlobalMarimeColoane
+        {
+            get { return _MarimeColoane; }
+            set { _MarimeColoane = value; }
         }
     }
     static class Program
@@ -32,6 +38,7 @@ namespace Chess
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new ExportGame());
             Application.Run(new Form1());
         }
     }

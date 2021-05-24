@@ -52,6 +52,12 @@
     <Compile Include="CalCustomControl.Designer.cs">
       <DependentUpon>CalCustomControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExportGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportGame.Designer.cs">
+      <DependentUpon>ExportGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="NebunCustomControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,11 +118,20 @@
     <Compile Include="TuraCustomControl.Designer.cs">
       <DependentUpon>TuraCustomControl.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CalCustomControl.resx">
+      <DependentUpon>CalCustomControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DialogJocNou.resx">
       <DependentUpon>DialogJocNou.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExportGame.resx">
+      <DependentUpon>ExportGame.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NebunCustomControl.resx">
+      <DependentUpon>NebunCustomControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PionCustomControl.resx">
       <DependentUpon>PionCustomControl.cs</DependentUpon>
@@ -131,11 +146,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RegeCustomControl.resx">
+      <DependentUpon>RegeCustomControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReginaCustomControl.resx">
+      <DependentUpon>ReginaCustomControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectPropsCustomMode.resx">
       <DependentUpon>SelectPropsCustomMode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectWINCustomMode.resx">
       <DependentUpon>SelectWINCustomMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TuraCustomControl.resx">
+      <DependentUpon>TuraCustomControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -164,6 +188,7 @@
     <None Include="Resources\BK.gif" />
     <None Include="Resources\BB.gif" />
     <None Include="Resources\WP.gif" />
+    <None Include="Resources\x-symbol.png" />
     <Content Include="Resurse\BB.gif" />
     <Content Include="Resurse\BK.gif" />
     <Content Include="Resurse\BN.gif" />

@@ -16,6 +16,8 @@ namespace Chess
 
         public int Enumarare { get; set; }
 
+        public int Capturare { get; set; }
+
         public Piece()
         {
             PieceName = "-";
@@ -23,6 +25,7 @@ namespace Chess
             IsFirstMove = true;
             PieceValue = 0;
             Enumarare = 0;
+            Capturare = 0;
         }
     }
 }

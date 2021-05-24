@@ -20,11 +20,12 @@ namespace Chess
             /// <param name="color">Player color</param>
             /// <param name="engineThinkTimeInMs">Ms to allow the engine to come
             /// up with a best move</param>
-            public NewGameInfo(TipJoc type, CuloarePiesa color, MarimeTable marime)
+            public NewGameInfo(TipJoc type, CuloarePiesa color, MarimeTable marime1,MarimeTable marime2)
             {
                 typegame = type;
                 playerColor = color;
-                Size = marime;
+                SizeC = marime1;
+                SizeL = marime2;
 
             }
 
@@ -33,11 +34,13 @@ namespace Chess
 
             public TipJoc Type { get { return typegame; } set { typegame = value; } }
 
-            public MarimeTable SizeTable { get { return Size; } set { Size = value; } }
+            public MarimeTable SizeTableC { get { return SizeC; } set { SizeC = value; } }
+            public MarimeTable SizeTableL { get { return SizeL; } set { SizeL = value; } }
 
             private CuloarePiesa playerColor;
             private TipJoc typegame;
-            private MarimeTable Size;
+            private MarimeTable SizeC;
+            private MarimeTable SizeL;
         }
         private NewGameInfo newGameInfo;
         public NewGameInfo Info { get { return newGameInfo; } }
@@ -56,30 +59,37 @@ namespace Chess
             RadioButton butontip = RadioButtonHelper.GetCheckedRadio(groupBox2);
             if (butontip == btn_regulischimbate)
                 tipjoc = TipJoc.ReguliSchimbate;
-            RadioButton butonmarime = RadioButtonHelper.GetCheckedRadio(groupBox3);
-            MarimeTable Sizee = MarimeTable.Patru;
-            if (butonmarime == radioButton1)
-                Sizee = MarimeTable.Patru;
-            else
-                if (butonmarime == radioButton2)
-                Sizee = MarimeTable.Cinci;
-            else
-                if (butonmarime == radioButton3)
-                Sizee = MarimeTable.Sase;
-            else
-                if (butonmarime == radioButton4)
-                Sizee = MarimeTable.Sapte;
-            else
-                if (butonmarime == radioButton5)
-                Sizee = MarimeTable.Opt;
-            else
-                if (butonmarime == radioButton6)
-                Sizee = MarimeTable.Noua;
-            else
-                if (butonmarime == radioButton7)
-                Sizee = MarimeTable.Zece;
-            newGameInfo = new NewGameInfo(tipjoc, culoareajucatorului,Sizee);
+            MarimeTable SizeeL = MarimeTable.Patru;
+            MarimeTable SizeeC = MarimeTable.Patru;
+            if (String.Equals(comboBox1.Text, "5"))
+                SizeeL = MarimeTable.Cinci;
+            if (String.Equals(comboBox1.Text, "6"))
+                SizeeL = MarimeTable.Sase;
+            if (String.Equals(comboBox1.Text, "7"))
+                SizeeL = MarimeTable.Sapte;
+            if (String.Equals(comboBox1.Text, "8"))
+                SizeeL = MarimeTable.Opt;
+            if (String.Equals(comboBox1.Text, "9"))
+                SizeeL = MarimeTable.Noua;
+            if (String.Equals(comboBox1.Text, "10"))
+                SizeeL = MarimeTable.Zece;
+            if (String.Equals(comboBox2.Text, "5"))
+                SizeeC = MarimeTable.Cinci;
+            if (String.Equals(comboBox2.Text, "6"))
+                SizeeC = MarimeTable.Sase;
+            if (String.Equals(comboBox2.Text, "7"))
+                SizeeC = MarimeTable.Sapte;
+            if (String.Equals(comboBox2.Text, "8"))
+                SizeeC = MarimeTable.Opt;
+            if (String.Equals(comboBox2.Text, "9"))
+                SizeeC = MarimeTable.Noua;
+            if (String.Equals(comboBox2.Text, "10"))
+                SizeeC = MarimeTable.Zece;
+
+            newGameInfo = new NewGameInfo(tipjoc, culoareajucatorului,SizeeC,SizeeL);
         }
+
+       
     }
     class RadioButtonHelper
     {

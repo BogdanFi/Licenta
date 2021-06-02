@@ -189,6 +189,7 @@
     <None Include="Resources\BB.gif" />
     <None Include="Resources\WP.gif" />
     <None Include="Resources\x-symbol.png" />
+    <Content Include="Resources\sageata1.png" />
     <Content Include="Resurse\BB.gif" />
     <Content Include="Resurse\BK.gif" />
     <Content Include="Resurse\BN.gif" />

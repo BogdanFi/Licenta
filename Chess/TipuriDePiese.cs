@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chess
 {
+    [Serializable]
     public struct DateleNouluiJoc
     {
         private string nume;
@@ -24,16 +25,33 @@ namespace Chess
         public bool RaspunsIntrb3 { get { return Raspuns3; } set { Raspuns3 = value; } }
         public bool Save { get { return save; } set { save = value; } }
     }
+
+    [Serializable]
+    public struct DateCastigPartida
+    {
+        private string nume;
+        private string[] mutari;
+        private bool Raspuns1;
+        private bool Raspuns11;
+        private bool Raspuns2;
+
+        public string NumePiesa { get { return nume; } set { nume = value; } }
+
+        public string[] MutariPozitie { get { return mutari; } set { mutari = value; } }
+        
+        public bool RaspunsIntrebare1 { get { return Raspuns1; } set { Raspuns1 = value; } }
+
+        public bool RaspunsIntrebare11 { get { return Raspuns11; } set { Raspuns11 = value; } }
+
+        public bool RaspunsIntrebare2 { get { return Raspuns2; } set { Raspuns2 = value; } }
+       
+    }
     public enum CuloarePiesa
     {
         Alb,
         Negru
     }
-    public enum TipJoc
-    {
-        Clasic,
-        ReguliSchimbate
-    }
+   
     public enum MarimeTable
     {
         Patru,

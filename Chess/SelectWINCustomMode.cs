@@ -16,12 +16,15 @@ namespace Chess
         static string piesa;
         public PictureBox[] pieceBorder;
         public Piece[] pieceIdBoard;
+        private static DateCastigPartida DatePiesa;
+        public static DateCastigPartida Info { get { return DatePiesa; } }
 
         GroupBox groupBox1 = new GroupBox();
         GroupBox groupBox2 = new GroupBox();
         GroupBox groupBox3 = new GroupBox();
         Panel panel2 = new Panel();
         Panel panel3 = new Panel();
+        Button buton_am_terminat = new Button();
         
         public SelectWINCustomMode()
         {
@@ -126,6 +129,22 @@ namespace Chess
 
             this.Controls.Add(groupBox2);
             radioButton2_Click(this, new EventArgs());
+
+            buton_am_terminat.FlatAppearance.BorderSize = 0;
+            buton_am_terminat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buton_am_terminat.Font = new System.Drawing.Font("MS PGothic", 11.25F);
+            buton_am_terminat.Name = "buton_am_terminat";
+            buton_am_terminat.Size = new System.Drawing.Size(172, 52);
+            buton_am_terminat.ForeColor = System.Drawing.Color.White;
+            buton_am_terminat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(30)))));
+            buton_am_terminat.Size = new System.Drawing.Size(172, 52);
+            buton_am_terminat.Text = "Am terminat";
+            buton_am_terminat.UseVisualStyleBackColor = true;
+            buton_am_terminat.Location = new System.Drawing.Point(71, 163);
+            buton_am_terminat.Click += new System.EventHandler(this.buton_am_terminat_Click);
+            this.Controls.Add(buton_am_terminat);
+
+
         }
 
 
@@ -273,6 +292,63 @@ namespace Chess
             Piece piece = sender as Piece;
             pieceBorder[piece.PiecePosition].BackColor = Color.Yellow;
             pieceIdBoard[piece.PiecePosition].BackColor = Color.Yellow;
+        }
+
+        private void buton_am_terminat_Click(object sender, EventArgs e)
+        {
+            int BoardSizeL = CalculeazaMarime(Global.GlobalMarimeLinii);
+            int BoardSizeC = CalculeazaMarime(Global.GlobalMarimeColoane);
+            int ok = 0;
+            int j;
+            if (radioButton4.Checked == true)
+            {
+                ok =2;
+                for(j = 1; j < BoardSizeC * BoardSizeL; j++)
+                {
+                    if (pieceIdBoard[j].BackColor == Color.Yellow)
+                    {
+                        ok = 1;
+                        break;
+                    }
+                }
+                if (ok ==2)
+                {
+                    MessageBox.Show("Nu ați selectat nici o poziție de terminare a partidei", "Atenție");
+                }
+            }
+            DatePiesa.NumePiesa = String.Copy(piesa);
+            string[] a = new string[10];
+            if (ok == 1)
+            {
+                int i = 1;
+                for (j = 1; j < BoardSizeC * BoardSizeL; j++)
+                    if (pieceIdBoard[j].BackColor == Color.Yellow)
+                    {
+                        a[i - 1] = ((char)('a' + (pieceIdBoard[j].Location.X / 84))).ToString() + (BoardSizeL - pieceIdBoard[j].Location.Y / 84).ToString();
+                        i++;
+                    }
+                DatePiesa.MutariPozitie = a;
+            }
+            if (ok < 2)
+            {
+                RadioButton raspuns1 = RadioButtonHelper.GetCheckedRadio(groupBox1);
+                RadioButton raspuns3 = RadioButtonHelper.GetCheckedRadio(groupBox3);
+                RadioButton raspuns2 = RadioButtonHelper.GetCheckedRadio(groupBox2);
+                if (raspuns1 == radioButton2)
+                    DatePiesa.RaspunsIntrebare1 = false;
+                else
+                    DatePiesa.RaspunsIntrebare1 = true;
+                if (raspuns3 == radioButton5)
+                    DatePiesa.RaspunsIntrebare11 = false;
+                else
+                    DatePiesa.RaspunsIntrebare11 = true;
+                if (raspuns2 == radioButton3)
+                    DatePiesa.RaspunsIntrebare2 = false;
+                else
+                    DatePiesa.RaspunsIntrebare2 = true;
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
     }
 }

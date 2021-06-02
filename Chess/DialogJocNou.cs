@@ -20,9 +20,9 @@ namespace Chess
             /// <param name="color">Player color</param>
             /// <param name="engineThinkTimeInMs">Ms to allow the engine to come
             /// up with a best move</param>
-            public NewGameInfo(TipJoc type, CuloarePiesa color, MarimeTable marime1,MarimeTable marime2)
+            public NewGameInfo( CuloarePiesa color, MarimeTable marime1,MarimeTable marime2)
             {
-                typegame = type;
+               
                 playerColor = color;
                 SizeC = marime1;
                 SizeL = marime2;
@@ -32,13 +32,13 @@ namespace Chess
             /// <summary>Player color (e.g. white or black)</summary>
             public CuloarePiesa PlayerColor { get { return playerColor; } }
 
-            public TipJoc Type { get { return typegame; } set { typegame = value; } }
+           
 
             public MarimeTable SizeTableC { get { return SizeC; } set { SizeC = value; } }
             public MarimeTable SizeTableL { get { return SizeL; } set { SizeL = value; } }
 
             private CuloarePiesa playerColor;
-            private TipJoc typegame;
+            
             private MarimeTable SizeC;
             private MarimeTable SizeL;
         }
@@ -55,10 +55,7 @@ namespace Chess
             RadioButton butonculoare = RadioButtonHelper.GetCheckedRadio(groupBox1);
             if (butonculoare == btn_Negru)
                 culoareajucatorului = CuloarePiesa.Negru;
-            TipJoc tipjoc = TipJoc.Clasic;
-            RadioButton butontip = RadioButtonHelper.GetCheckedRadio(groupBox2);
-            if (butontip == btn_regulischimbate)
-                tipjoc = TipJoc.ReguliSchimbate;
+            
             MarimeTable SizeeL = MarimeTable.Patru;
             MarimeTable SizeeC = MarimeTable.Patru;
             if (String.Equals(comboBox1.Text, "5"))
@@ -86,7 +83,7 @@ namespace Chess
             if (String.Equals(comboBox2.Text, "10"))
                 SizeeC = MarimeTable.Zece;
 
-            newGameInfo = new NewGameInfo(tipjoc, culoareajucatorului,SizeeC,SizeeL);
+            newGameInfo = new NewGameInfo( culoareajucatorului,SizeeC,SizeeL);
         }
 
        

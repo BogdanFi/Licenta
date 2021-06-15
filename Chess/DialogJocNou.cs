@@ -47,6 +47,7 @@ namespace Chess
         public DialogJocNou()
         {
             InitializeComponent();
+
         }
 
         private void btn_ok_Click(object sender, EventArgs e)

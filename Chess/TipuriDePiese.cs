@@ -34,6 +34,9 @@ namespace Chess
         private bool Raspuns1;
         private bool Raspuns11;
         private bool Raspuns2;
+        private int coloane;
+        private int randuri;
+        private CuloarePiesa cul;
 
         public string NumePiesa { get { return nume; } set { nume = value; } }
 
@@ -44,6 +47,9 @@ namespace Chess
         public bool RaspunsIntrebare11 { get { return Raspuns11; } set { Raspuns11 = value; } }
 
         public bool RaspunsIntrebare2 { get { return Raspuns2; } set { Raspuns2 = value; } }
+        public int NumarColoane { get { return coloane; } set { coloane = value; } }
+        public int NumarRanduri { get { return randuri; } set { randuri = value; } }
+        public CuloarePiesa Culoare { get { return cul; } set { cul = value; } }
        
     }
     public enum CuloarePiesa

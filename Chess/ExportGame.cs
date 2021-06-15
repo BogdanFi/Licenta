@@ -16,6 +16,7 @@ namespace Chess
 {
     public partial class ExportGame : Form
     {
+        static int count =3;
         bool ok;
         DateCastigPartida date1 = SelectWINCustomMode.Info;
         DateleNouluiJoc[] date2 = SelectPropsCustomMode.Info;
@@ -23,6 +24,38 @@ namespace Chess
         {
             InitializeComponent();
             ok = true;
+            
+        }
+        private void CreateLabel(Point Locate,String informatii)
+        {
+            System.Windows.Forms.Label label;
+            label = new System.Windows.Forms.Label();
+            label.AutoSize = true;
+            label.Font = new System.Drawing.Font("MS PGothic", 11.25F);
+            label.ForeColor = System.Drawing.Color.White;
+            label.Location = Locate;
+            label.Name = "label"+count;
+            count++;
+            label.Size = new System.Drawing.Size(43, 15);
+            label.TabIndex = 1;
+            label.Text = String.Copy(informatii);
+            this.panel1.Controls.Add(label);
+        }
+        private void ExportGame_Load(object sender, EventArgs e)
+        {
+            int i,j;
+            StringBuilder sb;
+            Point Locatie = new Point(4, 77);
+            for (i=0;i<date2.Length;i++)
+            {
+                sb = new StringBuilder();
+                for (j = 0; j < date2[i].MutarilePiesei.Length; j++)
+                    sb.Append(date2[i].MutarilePiesei[j]+" ");
+                CreateLabel(Locatie, date2[i].NumelePiesei +" : "+ sb);
+                Locatie = new Point(4, Locatie.Y + 17);
+            }
+            CreateLabel(Locatie,"Piesa care determină finalul partidei este: "+date1.NumePiesa);
+            Locatie = new Point(4, Locatie.Y + 17);
             
         }
 
@@ -56,8 +89,13 @@ namespace Chess
             }
             else
             {
-
+                this.Close();
+                MainGame jocnou = new MainGame();
+                jocnou.SetValue(2);
+                jocnou.ShowDialog();
             }
         }
+
+        
     }
 }

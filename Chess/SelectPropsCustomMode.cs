@@ -284,140 +284,123 @@ namespace Chess
             }
         }
 
-        /*private void button8_Click(object sender, EventArgs e)
-        {
-            int ok = 0;
-            Button a = button1 ;
-            if (Controale.Count > 2)
-            {
-                foreach (Button buton in Controale)
-                {
-                    if (ok == 1)
-                    {
-                        buton.Location = new Point(buton.Location.X, buton.Location.Y - 56);
-                    }
-                    if (buton.Top == button8.Top && ok == 0)
-                    {
-                        ok = 1;
-                        this.panel1.Controls.Remove(buton);
-                        a = buton;
-                    }
-                }
-            }
-            else
-            {
-                    int i = 0;
-                    foreach (Button buton in Controale)
-                    {
-                        ++i;
-                        if (buton.Top == button8.Top)
-                            if (i == 1)
-                            {
-                                this.panel1.Controls.Remove(buton);
-                                a = buton;
-                                break;
-                            }
-                        else
-                            {
-                                a = buton;
-                            }
-                    }
-                    this.panel1.Controls.Remove(button8);
-                
-            }
-            
-            Controale.Remove(a);
-            Sidepanel.Location = new Point(Sidepanel.Location.X, Controale[0].Location.Y);
-            if (Controale.Count == 1)
-                this.panel1.Controls.Remove(button8);
-            else
-            {
-                button8.Location = new Point(button8.Location.X, Controale[0].Location.Y);
-            }
-                GetUserInterface(Controale[0]).BringToFront();
-        }
-        */
+        
         private void button8_Click(object sender, EventArgs e)
         {
             if (Controale.Count > 2)
             {
-                foreach(Button buton in Controale)
+                foreach (Button buton in Controale)
                 {
                     if (buton.Top == button8.Top)
                     {
-                        buton.Font= new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        buton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(84)))), ((int)(((byte)(95)))));
-                        button9.Top = buton.Top;
-                        button9.Visible = true;
-                        button8.Visible = false;
-                        Controale.Remove(buton);
+                        DialogResult dialogResult = MessageBox.Show(String.Format("Sunteți sigur că doriți să eliminați:{0} ?", buton.Text), "Atenție", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            buton.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                            buton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(84)))), ((int)(((byte)(95)))));
+                            button9.Top = buton.Top;
+                            button9.Visible = true;
+                            button8.Visible = false;
+                            Controale.Remove(buton);
+                        }
                         break;
                     }
                 }
             }
+            else
+                MessageBox.Show("Trebuie să aveți măcar 2 piese pe tabla de joc.");
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
             if (button1.Top == button9.Top)
             {
-                button1.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
-                button8.Top = button1.Top;
-                button8.Visible = true;
-                button9.Visible = false;
-                Controale.Add(button1);
-                return;
+                DialogResult dialogResult = MessageBox.Show("Sunteți sigur că doriți să reintroduceți Pionul?", "Atenție", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    button1.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+                    button8.Top = button1.Top;
+                    button8.Visible = true;
+                    button9.Visible = false;
+                    Controale.Add(button1);
+                    return;
+                }
             }
             if (button2.Top == button9.Top)
             {
-                button2.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
-                button8.Top = button2.Top;
-                button8.Visible = true;
-                button9.Visible = false;
-                Controale.Add(button2);
-                return;
+                DialogResult dialogResult = MessageBox.Show("Sunteți sigur că doriți să reintroduceți Tura?", "Atenție", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    button2.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+                    button8.Top = button2.Top;
+                    button8.Visible = true;
+                    button9.Visible = false;
+                    Controale.Add(button2);
+                    return;
+                }
+                
             }
             if (button3.Top == button9.Top)
             {
-                button3.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
-                button8.Top = button3.Top;
-                button8.Visible = true;
-                button9.Visible = false;
-                Controale.Add(button3);
-                return;
+                DialogResult dialogResult = MessageBox.Show("Sunteți sigur că doriți să reintroduceți Calul?", "Atenție", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    button3.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+                    button8.Top = button3.Top;
+                    button8.Visible = true;
+                    button9.Visible = false;
+                    Controale.Add(button3);
+                    return;
+                }
+
             }
             if (button4.Top == button9.Top)
             {
-                button4.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
-                button8.Top = button4.Top;
-                button8.Visible = true;
-                button9.Visible = false;
-                Controale.Add(button4);
-                return;
+                DialogResult dialogResult = MessageBox.Show("Sunteți sigur că doriți să reintroduceți Nebunul?", "Atenție", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    button4.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+                    button8.Top = button4.Top;
+                    button8.Visible = true;
+                    button9.Visible = false;
+                    Controale.Add(button4);
+                    return;
+                }
+
             }
             if (button5.Top == button9.Top)
             {
-                button5.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
-                button8.Top = button5.Top;
-                button8.Visible = true;
-                button9.Visible = false;
-                Controale.Add(button5);
-                return;
+                DialogResult dialogResult = MessageBox.Show("Sunteți sigur că doriți să reintroduceți Regina?", "Atenție", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    button5.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+                    button8.Top = button5.Top;
+                    button8.Visible = true;
+                    button9.Visible = false;
+                    Controale.Add(button5);
+                    return;
+                }
+
             }
             if (button6.Top == button9.Top)
             {
-                button6.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
-                button8.Top = button6.Top;
-                button8.Visible = true;
-                button9.Visible = false;
-                Controale.Add(button6);
-                return;
+                DialogResult dialogResult = MessageBox.Show("Sunteți sigur că doriți să reintroduceți Regele?", "Atenție", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    button6.Font = new System.Drawing.Font("MS PGothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+                    button8.Top = button6.Top;
+                    button8.Visible = true;
+                    button9.Visible = false;
+                    Controale.Add(button6);
+                    return;
+                }
+
             }
         }
     }

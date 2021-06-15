@@ -346,6 +346,9 @@ namespace Chess
                     DatePiesa.RaspunsIntrebare2 = false;
                 else
                     DatePiesa.RaspunsIntrebare2 = true;
+                DatePiesa.NumarRanduri = BoardSizeL;
+                DatePiesa.NumarColoane = BoardSizeC;
+                DatePiesa.Culoare = Global.GlobalCuloare;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

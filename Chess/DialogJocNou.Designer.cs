@@ -51,13 +51,13 @@
             this.groupBox1.Size = new System.Drawing.Size(200, 100);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Culoarea jucatorului";
+            this.groupBox1.Text = "Culoarea jucătorului";
             // 
             // btn_Negru
             // 
             this.btn_Negru.AutoSize = true;
             this.btn_Negru.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Negru.Location = new System.Drawing.Point(6, 52);
+            this.btn_Negru.Location = new System.Drawing.Point(6, 53);
             this.btn_Negru.Name = "btn_Negru";
             this.btn_Negru.Size = new System.Drawing.Size(66, 22);
             this.btn_Negru.TabIndex = 1;
@@ -69,7 +69,7 @@
             this.btn_alb.AutoSize = true;
             this.btn_alb.Checked = true;
             this.btn_alb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_alb.Location = new System.Drawing.Point(3, 22);
+            this.btn_alb.Location = new System.Drawing.Point(6, 25);
             this.btn_alb.Name = "btn_alb";
             this.btn_alb.Size = new System.Drawing.Size(46, 22);
             this.btn_alb.TabIndex = 0;
@@ -153,6 +153,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 7;
+            this.comboBox1.Text = "--Selectare--";
             // 
             // comboBox2
             // 
@@ -169,6 +170,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 8;
+            this.comboBox2.Text = "--Selectare--";
             // 
             // DialogJocNou
             // 
@@ -184,7 +186,7 @@
             this.Controls.Add(this.btn_Inapoi);
             this.Controls.Add(this.groupBox1);
             this.Name = "DialogJocNou";
-            this.Text = "Form2";
+            this.Text = "Configurare tablă";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

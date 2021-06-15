@@ -18,3 +18,4 @@ C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.RegeCustomControl.resources
 C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.ReginaCustomControl.resources
 C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.TuraCustomControl.resources
 C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.ExportGame.resources
+C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.MainGame.resources

@@ -16,6 +16,8 @@ namespace Chess
 {
     public partial class Form1 : Form
     {
+        static DateCastigPartida date1;
+        static DateleNouluiJoc[] date2 = new DateleNouluiJoc[10];
         public Form1()
         {
             InitializeComponent();
@@ -35,6 +37,7 @@ namespace Chess
                 Global.GlobalCuloare = dialogjocnou.Info.PlayerColor;
                 Global.GlobalMarimeLinii = dialogjocnou.Info.SizeTableL;
                 Global.GlobalMarimeColoane = dialogjocnou.Info.SizeTableC;
+                
                    
                 SelectPropsCustomMode dialogProps = new SelectPropsCustomMode();
                 var result = dialogProps.ShowDialog();
@@ -56,10 +59,10 @@ namespace Chess
             
         }
 
+
         private void btn_IncarcareJoc_Click(object sender, EventArgs e)
         {
-            DateCastigPartida date1;
-            DateleNouluiJoc[] date2 = new DateleNouluiJoc[10];
+            
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Filter = "Text files (*.txt)|*.txt";
             if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -83,8 +86,21 @@ namespace Chess
                 {
                     Console.WriteLine(ex.Message);
                 }
-                
+                this.Hide();
+                MainGame jocnou = new MainGame();
+                jocnou.SetValue(1);
+                jocnou.ShowDialog();
             }
+        }
+
+        internal static DateCastigPartida DatePartida()
+        {
+            return date1;
+        }
+
+        internal static DateleNouluiJoc[] DateJoc()
+        {
+            return date2;
         }
     }
 }

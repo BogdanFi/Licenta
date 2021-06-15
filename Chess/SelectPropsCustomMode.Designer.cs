@@ -31,6 +31,7 @@ namespace Chess
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectPropsCustomMode));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.Sidepanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@ namespace Chess
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button9 = new System.Windows.Forms.Button();
             this.pionCustomControl1 = new Chess.PionCustomControl();
             this.turaCustomControl = new Chess.TuraCustomControl();
             this.nebunCustomControl = new Chess.NebunCustomControl();
@@ -69,6 +69,20 @@ namespace Chess
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(175, 639);
             this.panel1.TabIndex = 0;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(95)))));
+            this.button9.FlatAppearance.BorderSize = 0;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
+            this.button9.Location = new System.Drawing.Point(133, 104);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(43, 52);
+            this.button9.TabIndex = 5;
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Visible = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button8
             // 
@@ -220,20 +234,6 @@ namespace Chess
             this.panel2.Size = new System.Drawing.Size(1005, 22);
             this.panel2.TabIndex = 1;
             // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(95)))));
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
-            this.button9.Location = new System.Drawing.Point(133, 104);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(43, 52);
-            this.button9.TabIndex = 5;
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Visible = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
             // pionCustomControl1
             // 
             this.pionCustomControl1.Location = new System.Drawing.Point(175, 28);
@@ -290,7 +290,7 @@ namespace Chess
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "SelectPropsCustomMode";
-            this.Text = "Form2";
+            this.Text = "Configurare piese";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

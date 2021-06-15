@@ -178,6 +178,81 @@
             this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Verdana", 11.25F);
+            this.radioButton1.Location = new System.Drawing.Point(7, 27);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(51, 22);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.Text = "Yes";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Click += new System.EventHandler(this.radioButton1_Click);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Font = new System.Drawing.Font("Verdana", 11.25F);
+            this.radioButton2.Location = new System.Drawing.Point(7, 56);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(47, 22);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "No";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Click += new System.EventHandler(this.radioButton2_Click);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Checked = true;
+            this.radioButton3.Font = new System.Drawing.Font("Verdana", 11.25F);
+            this.radioButton3.Location = new System.Drawing.Point(7, 66);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(47, 22);
+            this.radioButton3.TabIndex = 1;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "No";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.Click += new System.EventHandler(this.radioButton3_Click);
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Font = new System.Drawing.Font("Verdana", 11.25F);
+            this.radioButton4.Location = new System.Drawing.Point(7, 37);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(51, 22);
+            this.radioButton4.TabIndex = 0;
+            this.radioButton4.Text = "Yes";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.Click += new System.EventHandler(this.radioButton4_Click);
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.Checked = true;
+            this.radioButton5.Font = new System.Drawing.Font("Verdana", 10.25F);
+            this.radioButton5.Location = new System.Drawing.Point(7, 66);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(47, 22);
+            this.radioButton5.TabIndex = 1;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "No";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Font = new System.Drawing.Font("Verdana", 10.25F);
+            this.radioButton6.Location = new System.Drawing.Point(7, 37);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(51, 22);
+            this.radioButton6.TabIndex = 0;
+            this.radioButton6.Text = "Yes";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
             // SelectWINCustomMode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,88 +267,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Name = "SelectWINCustomMode";
-            this.Text = "SelectWINCustomMode";
+            this.Text = "Configurarea piesei care determină sfârșitul partidei";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 
-            //
-            // Random
-            //
-            
-           
-            radioButton5.Checked = true;
-            radioButton5.Font = new System.Drawing.Font("Verdana", 10.25F);
-            radioButton5.Location = new System.Drawing.Point(7, 66);
-            radioButton5.Name = "radioButton2";
-            radioButton5.Size = new System.Drawing.Size(47, 22);
-            radioButton5.TabIndex = 1;
-            radioButton5.TabStop = true;
-            radioButton5.Text = "No";
-            radioButton5.UseVisualStyleBackColor = true;
-
-            
-            radioButton6.AutoSize = true;
-            radioButton6.Font = new System.Drawing.Font("Verdana", 10.25F);
-            radioButton6.Location = new System.Drawing.Point(7, 37);
-            radioButton6.Name = "radioButton1";
-            radioButton6.Size = new System.Drawing.Size(51, 22);
-            radioButton6.TabIndex = 0;
-            radioButton6.Text = "Yes";
-            radioButton6.UseVisualStyleBackColor = true;
-
-            // 
-            // radioButton3
-            // 
-            radioButton3.AutoSize = true;
-            radioButton3.Checked = true;
-            radioButton3.Font = new System.Drawing.Font("Verdana", 11.25F);
-            radioButton3.Location = new System.Drawing.Point(7, 66);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new System.Drawing.Size(47, 22);
-            radioButton3.TabIndex = 1;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "No";
-            radioButton3.UseVisualStyleBackColor = true;
-            radioButton3.Click += new System.EventHandler(radioButton3_Click);
-            // 
-            // radioButton4
-            // 
-            radioButton4.AutoSize = true;
-            radioButton4.Font = new System.Drawing.Font("Verdana", 11.25F);
-            radioButton4.Location = new System.Drawing.Point(7, 37);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new System.Drawing.Size(51, 22);
-            radioButton4.TabIndex = 0;
-            radioButton4.Text = "Yes";
-            radioButton4.UseVisualStyleBackColor = true;
-            radioButton4.Click += new System.EventHandler(radioButton4_Click);
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Checked = true;
-            radioButton2.Font = new System.Drawing.Font("Verdana", 11.25F);
-            radioButton2.Location = new System.Drawing.Point(7, 56);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new System.Drawing.Size(47, 22);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "No";
-            radioButton2.UseVisualStyleBackColor = true;
-            radioButton2.Click += new System.EventHandler(radioButton2_Click);
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Font = new System.Drawing.Font("Verdana", 11.25F);
-            radioButton1.Location = new System.Drawing.Point(7, 27);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new System.Drawing.Size(51, 22);
-            radioButton1.TabIndex = 0;
-            radioButton1.Text = "Yes";
-            radioButton1.UseVisualStyleBackColor = true;
-            radioButton1.Click += new System.EventHandler(radioButton1_Click);
         }
 
         #endregion

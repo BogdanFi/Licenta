@@ -10,7 +10,8 @@ namespace Chess
     public struct DateleNouluiJoc
     {
         private string nume;
-        private string[] mutari;
+        private string[] mutariprimultraseu;
+        private string[] mutarialdoileatraseu;
         private string[] mutariCaptura;
         private bool Raspuns1;
         private bool Raspuns2;
@@ -18,7 +19,8 @@ namespace Chess
         private bool save;
 
         public string NumelePiesei { get { return nume; } set { nume = value; } }
-        public string[] MutarilePiesei { get { return mutari; } set { mutari = value; } }
+        public string[] MutarilePiesei1 { get { return mutariprimultraseu; } set { mutariprimultraseu = value; } }
+        public string[] MutarilePiesei2 { get { return mutarialdoileatraseu; } set { mutarialdoileatraseu = value; } }
         public string[] MutarilePieseiCaptura { get { return mutariCaptura; } set { mutariCaptura = value; } }
         public bool RaspunsIntrb1 { get { return Raspuns1; } set { Raspuns1 = value; } }
         public bool RaspunsIntrb2 { get { return Raspuns2; } set { Raspuns2 = value; } }

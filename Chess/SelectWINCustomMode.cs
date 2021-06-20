@@ -112,7 +112,7 @@ namespace Chess
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new System.Drawing.Size(650, 100);
             groupBox1.TabStop = false;
-            groupBox1.Text = piesa + " atacată determină sfârșitul partidei?";
+            groupBox1.Text = Articulare(piesa, 1);
 
             this.Controls.Add(groupBox1);
 
@@ -125,7 +125,7 @@ namespace Chess
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new System.Drawing.Size(650, 100);
             groupBox2.TabStop = false;
-            groupBox2.Text = "Poziția " + piesa + " determină sfârșitul partidei?";
+            groupBox2.Text = Articulare(piesa, 2); ;
 
             this.Controls.Add(groupBox2);
             radioButton2_Click(this, new EventArgs());
@@ -352,6 +352,42 @@ namespace Chess
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
+        }
+
+        private String Articulare(String piesa,int caz)
+        {
+    
+            if (String.Compare(piesa, "Pionul") == 0)
+                if (caz == 1)
+                    return "Pionul atacat determină sfârșitul partidei?";
+                else
+                    return "Poziția pionului determină sfârșitul partidei?";
+            if (String.Compare(piesa, "Tura") == 0)
+                if (caz == 1)
+                    return "Tura atacată determină sfârșitul partidei?";
+                else
+                    return "Poziția turei determină sfârșitul partidei?";
+            if (String.Compare(piesa, "Calul") == 0)
+                if (caz == 1)
+                    return "Calul atacat determină sfârșitul partidei?";
+                else
+                    return "Poziția calului determină sfârșitul partidei?";
+            if (String.Compare(piesa, "Nebunul") == 0)
+                if (caz == 1)
+                    return "Nebunul atacat determină sfârșitul partidei?";
+                else
+                    return "Poziția nebunului determină sfârșitul partidei?";
+            if (String.Compare(piesa, "Regina") == 0)
+                if (caz == 1)
+                    return "Regina atacată determină sfârșitul partidei?";
+                else
+                    return "Poziția reginei determină sfârșitul partidei?";
+            if (String.Compare(piesa, "Regele") == 0)
+                if (caz == 1)
+                    return "Regele atacat determină sfârșitul partidei?";
+                else
+                    return "Poziția regelui determină sfârșitul partidei?";
+            return null;
         }
     }
 }

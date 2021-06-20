@@ -44,15 +44,23 @@ namespace Chess
         private void ExportGame_Load(object sender, EventArgs e)
         {
             int i,j;
-            StringBuilder sb;
+            StringBuilder sb,ab;
             Point Locatie = new Point(4, 77);
             for (i=0;i<date2.Length;i++)
             {
                 sb = new StringBuilder();
-                for (j = 0; j < date2[i].MutarilePiesei.Length; j++)
-                    sb.Append(date2[i].MutarilePiesei[j]+" ");
+                ab = new StringBuilder();
+                for (j = 0; j < date2[i].MutarilePiesei1.Length; j++)
+                    sb.Append(date2[i].MutarilePiesei1[j]+" ");
                 CreateLabel(Locatie, date2[i].NumelePiesei +" : "+ sb);
                 Locatie = new Point(4, Locatie.Y + 17);
+                if (date2[i].MutarilePiesei2 != null)
+                {
+                    for (j = 0; j < date2[i].MutarilePiesei2.Length; j++)
+                        ab.Append(date2[i].MutarilePiesei2[j] + " ");
+                    CreateLabel(Locatie, date2[i].NumelePiesei + " : " + ab);
+                    Locatie = new Point(4, Locatie.Y + 17);
+                }
             }
             CreateLabel(Locatie,"Piesa care determină finalul partidei este: "+date1.NumePiesa);
             Locatie = new Point(4, Locatie.Y + 17);

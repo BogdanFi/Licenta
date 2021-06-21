@@ -64,6 +64,7 @@
     <Compile Include="MainGame.Designer.cs">
       <DependentUpon>MainGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mutare.cs" />
     <Compile Include="NebunCustomControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

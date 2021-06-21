@@ -27,7 +27,9 @@ namespace Chess
         public int LastX, LastY;
         private int count = 0;
         private int countt = 0;
-
+        private int negativecount = 0;
+        static int pornit = 0;
+        private Color Culoarea;
         public PionCustomControl()
         {
             InitializeComponent();
@@ -37,14 +39,16 @@ namespace Chess
             pieceIdBoard = new Piece[BoardSizeC*BoardSizeL];
             pieceBorder = new PictureBox[BoardSizeC * BoardSizeL];
             FirstMouseClick = false;
-            
+            Culoarea=Color.Yellow;
+
             panel2.Size = new Size(BoardSizeC*84,BoardSizeL * 84);
             panel1.Size = new Size(BoardSizeC * 84 + 117, BoardSizeL * 84 + 117);
             groupBox1.Location = new Point(BoardSizeC * 84 + 125, groupBox1.Location.Y);
             groupBox2.Location = new Point(BoardSizeC * 84 + 125, groupBox2.Location.Y);
             groupBox3.Location = new Point(BoardSizeC * 84 + 125, groupBox3.Location.Y);
-            button1.Location =new Point(button1.Location.X, BoardSizeL * 84 + 125);
+            button1.Location = new Point(button1.Location.X, BoardSizeL * 84 + 125);
             button2.Location = new Point(button2.Location.X, BoardSizeL * 84 + 125);
+            button3.Location = new Point(button3.Location.X, BoardSizeL * 84 + 116);
             CreareMarcajeLaterale(BoardSizeL,BoardSizeC);
 
             panel2.BackgroundImage = Image.FromFile(@"C:\Users\rebeg\source\repos\Chess\Resources\board 10x10.png");
@@ -136,32 +140,46 @@ namespace Chess
             Piece piece = sender as Piece;
             if (!FirstMouseClick)
             {
-                Image imagn;
-                if (Global.GlobalCuloare == CuloarePiesa.Negru)
-                    imagn = Resources.BP;
+                if (piece.PiecePosition < BoardSizeC * 2)
+                {
+                    Image imagn;
+                    if (Global.GlobalCuloare == CuloarePiesa.Negru)
+                        imagn = Resources.BP;
+                    else
+                        imagn = Resources.WP;
+                    pieceIdBoard[piece.PiecePosition].Image = imagn;
+                    pieceIdBoard[piece.PiecePosition].SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+                    pieceIdBoard[piece.PiecePosition].PieceName = "Wp";
+                    pieceIdBoard[piece.PiecePosition].PieceValue = 10;
+                    pieceIdBoard[piece.PiecePosition].Enumarare = ++count;
+                    label1.Text = "Selectați modul în care se va deplasa pionul";
+                    FirstMouseClick = true;
+                    LastX = piece.Location.X;
+                    LastY = piece.Location.Y;
+                }
                 else
-                    imagn = Resources.WP;
-                pieceIdBoard[piece.PiecePosition].Image = imagn;
-                pieceIdBoard[piece.PiecePosition].SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-                pieceIdBoard[piece.PiecePosition].PieceName = "Wp";
-                pieceIdBoard[piece.PiecePosition].PieceValue = 10;
-                pieceIdBoard[piece.PiecePosition].Enumarare = ++count;
-                label1.Text = "Selectați modul în care se va deplasa pionul";
-                FirstMouseClick = true;
-                LastX = piece.Location.X;
-                LastY = piece.Location.Y;
+                    MessageBox.Show("Piesa de start trebuie să fie așezată pe primele 2 rânduri ale tabelei");
             }
             else
             if (e.Button == MouseButtons.Left)
             {
+                if (pieceIdBoard[piece.PiecePosition].Enumarare != 0)
+                {
+                    MessageBox.Show("Nu aveți voie să selectați de 2 ori aceeași căsuță!");
+                    return;
+                }
                 if ((Math.Abs(piece.Location.X - LastX)/84 == 1 && Math.Abs(piece.Location.Y - LastY)/84 == 1) ||
                     (Math.Abs(piece.Location.X - LastX)/84 == 0 && Math.Abs(piece.Location.Y - LastY)/84 == 1) ||
                     (Math.Abs(piece.Location.X - LastX)/84 == 1 && Math.Abs(piece.Location.Y - LastY)/84 == 0))
                 {
-                    pieceIdBoard[piece.PiecePosition].BackColor = Color.Yellow;
+                    if (Culoarea == Color.Yellow)
+                        pieceIdBoard[piece.PiecePosition].Enumarare = ++count;
+                    else
+                        pieceIdBoard[piece.PiecePosition].Enumarare = --negativecount;
+                    pieceIdBoard[piece.PiecePosition].BackColor = Culoarea;
                     LastX = piece.Location.X;
                     LastY = piece.Location.Y;
-                    pieceIdBoard[piece.PiecePosition].Enumarare = ++count;
+                    
                 }
                 else
                 {
@@ -170,8 +188,13 @@ namespace Chess
 
             }
             else
-                if(e.Button == MouseButtons.Right)
+                if(e.Button == MouseButtons.Right && pornit == 1)
             {
+                if( pieceIdBoard[piece.PiecePosition].Capturare!=0|| pieceIdBoard[piece.PiecePosition].Enumarare == 1)
+                {
+                    MessageBox.Show("Nu aveți voie să selectați de 2 ori aceeași căsuță!");
+                    return;
+                }
                 pieceIdBoard[piece.PiecePosition].BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                 pieceIdBoard[piece.PiecePosition].BackColor = Color.FromArgb(255, 213, 0);
                 pieceIdBoard[piece.PiecePosition].Capturare = ++countt;
@@ -183,6 +206,7 @@ namespace Chess
         {
             int i, j;
             string[] a= new string[count];
+            string[] b = new string[0 - negativecount+1];
             if (count >= 2)
             {
                 for (i = 1; i <= count; i++)
@@ -195,7 +219,24 @@ namespace Chess
                             break;
                         }
                     }
-                DatePiesa.MutarilePiesei = a;
+                DatePiesa.MutarilePiesei1 = a;
+                for (j = 1; j < BoardSizeC * BoardSizeL; j++)
+                    if (pieceIdBoard[j].Enumarare == 1)
+                    {
+                        b[0] = ((char)('a' + (pieceIdBoard[j].Location.X / 84))).ToString() + (BoardSizeL - pieceIdBoard[j].Location.Y / 84).ToString();
+                        break;
+                    }
+                for (i = -1; i >= negativecount; i--)
+
+                    for (j = 1; j < BoardSizeC * BoardSizeL; j++)
+                    {
+                        if (pieceIdBoard[j].Enumarare == i)
+                        {
+                            b[(0-i)] = ((char)('a' + (pieceIdBoard[j].Location.X / 84))).ToString() + (BoardSizeL - pieceIdBoard[j].Location.Y / 84).ToString();
+                            break;
+                        }
+                    }
+                DatePiesa.MutarilePiesei2 = b;
                 DatePiesa.Save = true;
                 DatePiesa.NumelePiesei = string.Copy("Pionul");
                 RadioButton raspuns1 = RadioButtonHelper.GetCheckedRadio(groupBox1);
@@ -216,14 +257,20 @@ namespace Chess
 
                 if (DatePiesa.RaspunsIntrb3 == false)
                 {
-                    a = new string[countt];
+                    a = new string[countt+1];
+                    for (j = 1; j < BoardSizeC * BoardSizeL; j++)
+                        if (pieceIdBoard[j].Enumarare == 1)
+                        {
+                            a[0] = ((char)('a' + (pieceIdBoard[j].Location.X / 84))).ToString() + (BoardSizeL - pieceIdBoard[j].Location.Y / 84).ToString();
+                            break;
+                        }
                     for (i = 1; i <= countt; i++)
 
                         for (j = 1; j < BoardSizeC * BoardSizeL; j++)
                         {
                             if (pieceIdBoard[j].Capturare == i)
                             {
-                                a[i - 1] = ((char)('a' + (pieceIdBoard[j].Location.X / 84))).ToString() + (BoardSizeL - pieceIdBoard[j].Location.Y / 84).ToString();
+                                a[i ] = ((char)('a' + (pieceIdBoard[j].Location.X / 84))).ToString() + (BoardSizeL - pieceIdBoard[j].Location.Y / 84).ToString();
                                 break;
                             }
                         }
@@ -257,21 +304,50 @@ namespace Chess
             radioButton2.Checked = true;
             radioButton4.Checked = true;
             DatePiesa.Save = false;
+            count = 0;
+            countt = 0;
+            negativecount = 0;
+            Culoarea = Color.Yellow;
+            pornit = 0;
+            radioButton6.Checked = true;
+            radioButton5.Checked = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int l;
+            if (count<2)
+            {
+                MessageBox.Show("Trebuie să aveți măcar un traseu configurat pentru a putea să îl configurați și pe al doilea!");
+            }
+            else
+            {
+                for ( l = 0; l < BoardSizeC * BoardSizeL; l++)
+                    if (pieceIdBoard[l].Enumarare == 1)
+                        break;
+                LastX = pieceIdBoard[l].Location.X;
+                LastY = pieceIdBoard[l].Location.Y;
+                Culoarea = Color.Cyan;
+            }
         }
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton5.Checked == true)
+            {
                 MessageBox.Show("Selectați poziția de captură a piesei cu click dreapta", "Atenție");
+                pornit = 1;
+            }
             else
             {
                 for (int i = 0; i < BoardSizeC * BoardSizeL; i++)
                 {
                     if (pieceIdBoard[i].BackColor == Color.FromArgb(255, 213, 0))
                         pieceIdBoard[i].BackColor = Color.Transparent;
-                        pieceIdBoard[i].BorderStyle = System.Windows.Forms.BorderStyle.None;
+                    pieceIdBoard[i].BorderStyle = System.Windows.Forms.BorderStyle.None;
+                    
                 }
-
+                pornit = 0;
             }
         }
 

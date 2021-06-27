@@ -19,3 +19,7 @@ C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.ReginaCustomControl.resources
 C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.TuraCustomControl.resources
 C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.ExportGame.resources
 C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.MainGame.resources
+C:\Users\rebeg\source\repos\Chess\bin\Debug\Chess.exe.manifest
+C:\Users\rebeg\source\repos\Chess\bin\Debug\Chess.application
+C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.exe.manifest
+C:\Users\rebeg\source\repos\Chess\obj\Debug\Chess.application

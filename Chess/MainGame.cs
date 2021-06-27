@@ -90,6 +90,9 @@ namespace Chess
             pieceBorder = new PictureBox[DatePartidaCastig.NumarColoane * DatePartidaCastig.NumarRanduri];
             panel1.Size = new Size(DatePartidaCastig.NumarColoane * 84, DatePartidaCastig.NumarRanduri * 84);
             button1.Location = new Point(button1.Location.X,panel1.Location.Y+panel1.Size.Height+40);
+            this.Size = new Size(panel1.Size.Width + 300, panel1.Size.Height + 300);
+            this.Location = new Point(0, 0);
+            Console.WriteLine(this.Location);
             panel1.BackgroundImage = Image.FromFile(@"C:\Users\rebeg\source\repos\Chess\Resources\board 10x10.png");
             panel1.BackgroundImageLayout = ImageLayout.None;
             CreareMarcajeLaterale(DatePartidaCastig.NumarRanduri, DatePartidaCastig.NumarColoane);
@@ -106,6 +109,7 @@ namespace Chess
                 }
                 catch (IndexOutOfRangeException ex)
                 {
+                    Console.WriteLine("Principal");
                     break;
                 };
             for (i = 0; i < DatePartidaCastig.NumarColoane * DatePartidaCastig.NumarRanduri; i++)
@@ -219,7 +223,7 @@ namespace Chess
                 else
                 {
                     
-                    if (piece.PiecePosition > 2 * DatePartidaCastig.NumarColoane)
+                    if (piece.PiecePosition > 2 * DatePartidaCastig.NumarColoane-1)
                         MessageBox.Show("Puteți plasa piese doar pe primele 2 rânduri ale tablei de joc");
                     else
                     {
@@ -302,7 +306,7 @@ namespace Chess
                             pieceIdBoard[move.From].BackColor = Color.Chocolate;
                             pieceIdBoard[move.To].BackColor = Color.Chocolate;
                             MainGame test2 = new MainGame(this, DatePartidaCastig, DatelePieselor);
-                            SetareTablaIncolora();
+                            
                             if (move.OpponentInCheck(pozitii, PozitiaDeStartAPiesei, piece.PiecePosition, test2, VerificareCuloare(pieceIdBoard[piece.PiecePosition].PieceName)))
                             {
                                 string msg = "Șah!";
@@ -492,40 +496,40 @@ namespace Chess
                 switch(chessBoard[i])
                 {
                     case "WP":
-                        SetareValoarePiesa(CuloarePiesa.Alb, 10, i,"WP");
+                        SetareValoarePiesa(CuloarePiesa.Alb, GetValoarePiesa("WP"), i,"WP");
                         break;
                     case "WN":
-                        SetareValoarePiesa(CuloarePiesa.Alb, 30, i,"WN");
+                        SetareValoarePiesa(CuloarePiesa.Alb, GetValoarePiesa("WN"), i,"WN");
                         break;
                     case "WB":
-                        SetareValoarePiesa(CuloarePiesa.Alb, 30, i,"WB");
+                        SetareValoarePiesa(CuloarePiesa.Alb, GetValoarePiesa("WB"), i,"WB");
                         break;
                     case "WR":
-                        SetareValoarePiesa(CuloarePiesa.Alb, 50, i,"WR");
+                        SetareValoarePiesa(CuloarePiesa.Alb, GetValoarePiesa("WR"), i,"WR");
                         break;
                     case "WK":
-                        SetareValoarePiesa(CuloarePiesa.Alb, 900, i,"WK");
+                        SetareValoarePiesa(CuloarePiesa.Alb, GetValoarePiesa("WK"), i,"WK");
                         break;
                     case "WQ":
-                        SetareValoarePiesa(CuloarePiesa.Alb, 90, i,"WQ");
+                        SetareValoarePiesa(CuloarePiesa.Alb, GetValoarePiesa("WQ"), i,"WQ");
                         break;
                     case "BP":
-                        SetareValoarePiesa(CuloarePiesa.Negru, 10, i,"BP");
+                        SetareValoarePiesa(CuloarePiesa.Negru, GetValoarePiesa("BP"), i,"BP");
                         break;
                     case "BN":
-                        SetareValoarePiesa(CuloarePiesa.Negru, 30, i,"BN");
+                        SetareValoarePiesa(CuloarePiesa.Negru, GetValoarePiesa("BN"), i,"BN");
                         break;
                     case "BB":
-                        SetareValoarePiesa(CuloarePiesa.Negru, 30, i,"BB");
+                        SetareValoarePiesa(CuloarePiesa.Negru, GetValoarePiesa("BB"), i,"BB");
                         break;
                     case "BR":
-                        SetareValoarePiesa(CuloarePiesa.Negru, 50, i,"BR");
+                        SetareValoarePiesa(CuloarePiesa.Negru, GetValoarePiesa("BR"), i,"BR");
                         break;
                     case "BK":
-                        SetareValoarePiesa(CuloarePiesa.Negru, 900, i,"BK");
+                        SetareValoarePiesa(CuloarePiesa.Negru, GetValoarePiesa("BK"), i,"BK");
                         break;
                     case "BQ":
-                        SetareValoarePiesa(CuloarePiesa.Negru, 90, i,"BQ");
+                        SetareValoarePiesa(CuloarePiesa.Negru, GetValoarePiesa("BQ"), i,"BQ");
                         break;
                     default:
                         pieceIdBoard[i].PiecePosition = i;
@@ -535,7 +539,36 @@ namespace Chess
                 }
             }
         }
+        private int GetValoarePiesa(String Nume)
+        {
+            string ume = NumePiesaImagine(Nume);
+            if (String.Compare(ume, DatePartidaCastig.NumePiesa) == 0)
+                return 900;
+            int suma = 0;
+            int i,div;
+            for (i = 0; i < DatePartidaCastig.NumarColoane * 2; i++)
+            {
+                if (String.Compare(pieceIdBoard[i].PieceName, Nume) == 0)
+                    suma++;
+            }
+            if (suma == 0)
+                return 0;
+            suma = suma * 125/100;
 
+            int max=0;
+            
+            for (i = 0; i < DatelePieselor.Length; i++)
+            {
+                if (String.Compare(DatelePieselor[i].NumelePiesei, ume) == 0)
+                    break;
+            }
+            max = DatelePieselor[i].MutarilePiesei1.Length-1;
+            if (DatelePieselor[i].MutarilePiesei2 != null)
+                max = max + DatelePieselor[i].MutarilePiesei2.Length-1;
+            suma = suma + (20 * (max/2) + 1);
+            return suma;
+
+        }
         private void SetareValoarePiesa(CuloarePiesa col,int valoare,int pozitie,string nume)
         {
             if (DatePartidaCastig.Culoare == col)
@@ -700,38 +733,39 @@ namespace Chess
                                 j = 1;
                                 curent = maingame.pieceIdBoard[i].PiecePosition;
                                 suma = 0;
+                                verific = 0;
                                 foreach (int valoare in mutari)
                                 {
-                                    if (j <= DatelePieselor[oj].MutarilePiesei1.Length - 1)
+                                    if (j <= DatelePieselor[oj].MutarilePiesei1.Length - 1 && verific ==0)
 
                                     {
-                                        suma = suma + valoare;
-
+                                        if (CheckCan(maingame, suma+curent, valoare) == false)
+                                            verific = 1;
+                                        else
+                                            suma = suma + valoare;
                                     }
 
                                     if (j == DatelePieselor[oj].MutarilePiesei1.Length - 1)
                                     {
-
-                                        if (CheckCan(maingame, curent, suma))
+                                        if(verific == 0)
                                         {
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) == 0)
+                                            if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) == 0)
                                                 intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
                                             else
                                             {
-                                                if (VerificareCuloare(maingame.pieceIdBoard[curent + valoare].PieceName) != culoareaPiesei)
+                                                if (VerificareCuloare(maingame.pieceIdBoard[curent + suma].PieceName) != culoareaPiesei)
                                                     intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
 
                                             }
-
-
                                         }
 
-                                        j = 1;
-                                        suma = 0;
 
+                                        j = 0;
+                                        suma = 0;
+                                        verific = 0;
 
                                     }
-
+                                    j++;
                                 }
                             }
                             else
@@ -742,10 +776,13 @@ namespace Chess
                                 verific = 0;
                                 foreach (int valoare in mutari)
                                 {
-                                    if (j <= DatelePieselor[oj].MutarilePiesei1.Length - 1)
+                                    if (j <= DatelePieselor[oj].MutarilePiesei1.Length - 1 && verific == 0)
 
                                     {
-                                        suma = suma + valoare;
+                                        if (CheckCan(maingame, suma + curent, valoare) == false)
+                                            verific = 1;
+                                        else
+                                            suma = suma + valoare;
                                         if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) != 0)
                                             verific = 1;
                                     }
@@ -753,26 +790,25 @@ namespace Chess
                                     if (j == DatelePieselor[oj].MutarilePiesei1.Length - 1)
                                     {
 
-                                        if (CheckCan(maingame, curent, suma) && verific == 0)
+                                        if(verific == 0)
                                         {
                                             if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) == 0)
-                                                intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
+                                                intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
                                             else
                                             {
                                                 if (VerificareCuloare(maingame.pieceIdBoard[curent + suma].PieceName) != culoareaPiesei)
-                                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
+                                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
 
                                             }
-
-
                                         }
 
-                                        j = 1;
+                                        j = 0;
                                         suma = 0;
                                         verific = 0;
 
 
                                     }
+                                    j++;
 
                                 }
                             }
@@ -783,7 +819,7 @@ namespace Chess
                         capturaLista = GetMutari(DatelePieselor[oj].MutarilePieseiCaptura);
                         if (DatelePieselor[oj].RaspunsIntrb2 == true)
                         {
-                            if (DatelePieselor[oj].RaspunsIntrb3 == true)
+                            if (DatelePieselor[oj].RaspunsIntrb1 == true)
                             {
                                 j = 1;
                                 curent = maingame.pieceIdBoard[i].PiecePosition;
@@ -857,7 +893,7 @@ namespace Chess
                         }
                         else
                         {
-                            if (DatelePieselor[oj].RaspunsIntrb3 == true)
+                            if (DatelePieselor[oj].RaspunsIntrb1 == true)
                             {
                                 j = 1;
                                 curent = maingame.pieceIdBoard[i].PiecePosition;
@@ -865,10 +901,13 @@ namespace Chess
                                 verific = 0;
                                 foreach (int valoare in mutari)
                                 {
-                                    if (j <= DatelePieselor[oj].MutarilePiesei1.Length - 1)
+                                    if (j <= DatelePieselor[oj].MutarilePiesei1.Length - 1 && verific == 0)
 
                                     {
-                                        suma = suma + valoare;
+                                        if (CheckCan(maingame, curent + suma, valoare) )
+                                            suma = suma + valoare;
+                                        else
+                                            verific = 1;
                                         if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) != 0)
                                             verific = 1;
                                     }
@@ -876,21 +915,22 @@ namespace Chess
                                     if (j == DatelePieselor[oj].MutarilePiesei1.Length - 1)
                                     {
 
-                                        if (CheckCan(maingame, curent, suma) && verific == 0)
+                                        if (verific == 0)
                                         {
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) == 0)
-                                                intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
+                                            if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) == 0 )
+                                                intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
 
 
 
                                         }
 
-                                        j = 1;
+                                        j = 0;
                                         suma = 0;
                                         verific = 0;
 
 
                                     }
+                                    j++;
 
                                 }
                             }
@@ -899,32 +939,37 @@ namespace Chess
                                 j = 1;
                                 curent = maingame.pieceIdBoard[i].PiecePosition;
                                 suma = 0;
+                                verific = 0;
                                 foreach (int valoare in mutari)
                                 {
-                                    if (j <= DatelePieselor[oj].MutarilePiesei1.Length - 1)
+                                    if (j <= DatelePieselor[oj].MutarilePiesei1.Length - 1 && verific == 0)
 
                                     {
-                                        suma = suma + valoare;
-
+                                        if (CheckCan(maingame, curent + suma, valoare))
+                                            suma = suma + valoare;
+                                        else
+                                            verific = 1;
+                                        
                                     }
 
                                     if (j == DatelePieselor[oj].MutarilePiesei1.Length - 1)
                                     {
 
-                                        if (CheckCan(maingame, curent, suma))
+                                        if (verific ==0)
                                         {
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) == 0)
+                                            if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) == 0)
                                                 intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
 
 
 
                                         }
 
-                                        j = 1;
+                                        j = 0;
                                         suma = 0;
-
+                                        verific = 0;
 
                                     }
+                                    j++;
 
                                 }
                             }
@@ -940,343 +985,356 @@ namespace Chess
                         }
                     }
                 }
+            if (DatelePieselor[oj].MutarilePiesei2 != null)
             if (DatelePieselor[oj].MutarilePiesei2.Length > 1)
             { mutari = GetMutari(DatelePieselor[k].MutarilePiesei2); 
             for (i = 0; i < DatePartidaCastig.NumarColoane * DatePartidaCastig.NumarRanduri; i++)
-                if (String.Compare(maingame.pieceIdBoard[i].PieceName, pieceName) == 0)
-                {
-                    if (DatelePieselor[oj].RaspunsIntrb3 == true)
+                    if (String.Compare(maingame.pieceIdBoard[i].PieceName, pieceName) == 0)
                     {
-                        if (DatelePieselor[oj].RaspunsIntrb2 == true)
+                        if (DatelePieselor[oj].RaspunsIntrb3 == true)
                         {
-                            if (DatelePieselor[oj].RaspunsIntrb1 == false)
+                            if (DatelePieselor[oj].RaspunsIntrb2 == true)
                             {
-                                j = 1;
-                                curent = maingame.pieceIdBoard[i].PiecePosition;
-                                foreach (int valoare in mutari)
+                                if (DatelePieselor[oj].RaspunsIntrb1 == false)
                                 {
-                                    if (j >= DatelePieselor[oj].MutarilePiesei2.Length)
-
+                                    j = 1;
+                                    curent = maingame.pieceIdBoard[i].PiecePosition;
+                                    foreach (int valoare in mutari)
                                     {
-                                        j = 1;
-                                        curent = maingame.pieceIdBoard[i].PiecePosition;
+                                        if (j >= DatelePieselor[oj].MutarilePiesei2.Length)
 
-                                    }
-
-                                    if (j < DatelePieselor[oj].MutarilePiesei2.Length)
-                                    {
-
-                                        if (CheckCan(maingame, curent, valoare))
                                         {
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) == 0)
-                                                intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
-                                            else
-                                            {
-                                                if (VerificareCuloare(maingame.pieceIdBoard[curent + valoare].PieceName) != culoareaPiesei)
-                                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
+                                            j = 1;
+                                            curent = maingame.pieceIdBoard[i].PiecePosition;
 
-                                            }
-
-                                            curent = curent + valoare;
                                         }
 
-                                        j++;
+                                        if (j < DatelePieselor[oj].MutarilePiesei2.Length)
+                                        {
+
+                                            if (CheckCan(maingame, curent, valoare))
+                                            {
+                                                if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) == 0)
+                                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
+                                                else
+                                                {
+                                                    if (VerificareCuloare(maingame.pieceIdBoard[curent + valoare].PieceName) != culoareaPiesei)
+                                                        intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
+
+                                                }
+
+                                                curent = curent + valoare;
+                                            }
+
+                                            j++;
+
+                                        }
 
                                     }
 
                                 }
+                                else
+                                {
+                                    j = 1;
+                                    curent = maingame.pieceIdBoard[i].PiecePosition;
+                                    verific = 0;
+                                    foreach (int valoare in mutari)
+                                    {
+                                        if (j >= DatelePieselor[oj].MutarilePiesei2.Length)
 
+                                        {
+                                            j = 1;
+                                            curent = maingame.pieceIdBoard[i].PiecePosition;
+                                            verific = 0;
+
+                                        }
+
+                                        if (j < DatelePieselor[oj].MutarilePiesei2.Length)
+                                        {
+
+                                            if (CheckCan(maingame, curent, valoare) && verific == 0)
+                                            {
+                                                if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) == 0)
+                                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
+                                                else
+                                                {
+                                                    if (VerificareCuloare(maingame.pieceIdBoard[curent + valoare].PieceName) != culoareaPiesei)
+                                                        intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
+
+                                                }
+                                                if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) != 0)
+                                                    verific = 1;
+
+                                                curent = curent + valoare;
+                                            }
+
+                                            j++;
+
+                                        }
+
+                                    }
+                                }
                             }
                             else
                             {
-                                j = 1;
-                                curent = maingame.pieceIdBoard[i].PiecePosition;
-                                verific = 0;
-                                foreach (int valoare in mutari)
+                                if (DatelePieselor[oj].RaspunsIntrb1 == false)
                                 {
-                                    if (j >= DatelePieselor[oj].MutarilePiesei2.Length)
-
+                                    j = 1;
+                                    curent = maingame.pieceIdBoard[i].PiecePosition;
+                                    suma = 0;
+                                    verific = 0;
+                                    foreach (int valoare in mutari)
                                     {
-                                        j = 1;
-                                        curent = maingame.pieceIdBoard[i].PiecePosition;
-                                        verific = 0;
+                                        if (j <= DatelePieselor[oj].MutarilePiesei2.Length - 1 && verific == 0)
 
-                                    }
-
-                                    if (j < DatelePieselor[oj].MutarilePiesei2.Length)
-                                    {
-
-                                        if (CheckCan(maingame, curent, valoare) && verific == 0)
                                         {
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) == 0)
-                                                intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
-                                            else
-                                            {
-                                                if (VerificareCuloare(maingame.pieceIdBoard[curent + valoare].PieceName) != culoareaPiesei)
-                                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
-
-                                            }
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) != 0)
+                                            if (CheckCan(maingame, suma + curent, valoare) == false)
                                                 verific = 1;
-
-                                            curent = curent + valoare;
+                                            else
+                                                suma = suma + valoare;
                                         }
 
+                                        if (j == DatelePieselor[oj].MutarilePiesei2.Length - 1)
+                                        {
+                                            if (verific == 0)
+                                            {
+                                                if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) == 0)
+                                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
+                                                else
+                                                {
+                                                    if (VerificareCuloare(maingame.pieceIdBoard[curent + suma].PieceName) != culoareaPiesei)
+                                                        intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
+
+                                                }
+                                            }
+
+
+                                            j = 0;
+                                            suma = 0;
+                                            verific = 0;
+
+                                        }
+                                        j++;
+                                    }
+                                }
+                                else
+                                {
+                                    j = 1;
+                                    curent = maingame.pieceIdBoard[i].PiecePosition;
+                                    suma = 0;
+                                    verific = 0;
+                                    foreach (int valoare in mutari)
+                                    {
+                                        if (j <= DatelePieselor[oj].MutarilePiesei2.Length - 1 && verific == 0)
+
+                                        {
+                                            if (CheckCan(maingame, suma + curent, valoare) == false)
+                                                verific = 1;
+                                            else
+                                                suma = suma + valoare;
+                                            if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) != 0)
+                                                verific = 1;
+                                        }
+
+                                        if (j == DatelePieselor[oj].MutarilePiesei2.Length - 1)
+                                        {
+
+                                            if (verific == 0)
+                                            {
+                                                if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) == 0)
+                                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
+                                                else
+                                                {
+                                                    if (VerificareCuloare(maingame.pieceIdBoard[curent + suma].PieceName) != culoareaPiesei)
+                                                        intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
+
+                                                }
+                                            }
+
+                                            j = 0;
+                                            suma = 0;
+                                            verific = 0;
+
+
+                                        }
                                         j++;
 
                                     }
-
                                 }
                             }
                         }
                         else
                         {
-                            if (DatelePieselor[oj].RaspunsIntrb1 == false)
+                            capturaLista = GetMutari(DatelePieselor[oj].MutarilePieseiCaptura);
+                            if (DatelePieselor[oj].RaspunsIntrb2 == true)
                             {
-                                j = 1;
-                                curent = maingame.pieceIdBoard[i].PiecePosition;
-                                suma = 0;
-                                foreach (int valoare in mutari)
+                                if (DatelePieselor[oj].RaspunsIntrb1 == true)
                                 {
-                                    if (j <= DatelePieselor[oj].MutarilePiesei2.Length - 1)
-
+                                    j = 1;
+                                    curent = maingame.pieceIdBoard[i].PiecePosition;
+                                    verific = 0;
+                                    foreach (int valoare in mutari)
                                     {
-                                        suma = suma + valoare;
+                                        if (j >= DatelePieselor[oj].MutarilePiesei2.Length)
+
+                                        {
+                                            j = 1;
+                                            curent = maingame.pieceIdBoard[i].PiecePosition;
+                                            verific = 0;
+
+                                        }
+
+                                        if (j < DatelePieselor[oj].MutarilePiesei2.Length)
+                                        {
+
+                                            if (CheckCan(maingame, curent, valoare) && verific == 0)
+                                            {
+                                                if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) == 0)
+                                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
+
+                                                if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) != 0)
+                                                    verific = 1;
+
+                                                curent = curent + valoare;
+                                            }
+
+                                            j++;
+
+                                        }
 
                                     }
 
-                                    if (j == DatelePieselor[oj].MutarilePiesei2.Length - 1)
+                                }
+                                else
+                                {
+                                    j = 1;
+                                    curent = maingame.pieceIdBoard[i].PiecePosition;
+                                    foreach (int valoare in mutari)
                                     {
+                                        if (j >= DatelePieselor[oj].MutarilePiesei2.Length)
 
-                                        if (CheckCan(maingame, curent, suma))
                                         {
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) == 0)
-                                                intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
-                                            else
+                                            j = 1;
+                                            curent = maingame.pieceIdBoard[i].PiecePosition;
+
+                                        }
+
+                                        if (j < DatelePieselor[oj].MutarilePiesei2.Length)
+                                        {
+
+                                            if (CheckCan(maingame, curent, valoare))
                                             {
-                                                if (VerificareCuloare(maingame.pieceIdBoard[curent + valoare].PieceName) != culoareaPiesei)
+                                                if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) == 0)
+                                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
+
+
+                                                curent = curent + valoare;
+                                            }
+
+                                            j++;
+
+                                        }
+
+                                    }
+
+
+                                }
+                            }
+                            else
+                            {
+                                if (DatelePieselor[oj].RaspunsIntrb1 == true)
+                                {
+                                    j = 1;
+                                    curent = maingame.pieceIdBoard[i].PiecePosition;
+                                    suma = 0;
+                                    verific = 0;
+                                    foreach (int valoare in mutari)
+                                    {
+                                        if (j <= DatelePieselor[oj].MutarilePiesei2.Length - 1 && verific == 0)
+
+                                        {
+                                            if (CheckCan(maingame, curent + suma, valoare))
+                                                suma = suma + valoare;
+                                            else
+                                                verific = 1;
+                                            if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) != 0)
+                                                verific = 1;
+                                        }
+
+                                        if (j == DatelePieselor[oj].MutarilePiesei2.Length - 1)
+                                        {
+
+                                            if (verific == 0)
+                                            {
+                                                if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) == 0)
                                                     intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
 
+
+
                                             }
+
+                                            j = 0;
+                                            suma = 0;
+                                            verific = 0;
 
 
                                         }
-
-                                        j = 1;
-                                        suma = 0;
-
+                                        j++;
 
                                     }
-
                                 }
-                            }
-                            else
-                            {
-                                j = 1;
-                                curent = maingame.pieceIdBoard[i].PiecePosition;
-                                suma = 0;
-                                verific = 0;
-                                foreach (int valoare in mutari)
+                                else
                                 {
-                                    if (j <= DatelePieselor[oj].MutarilePiesei2.Length - 1)
-
+                                    j = 1;
+                                    curent = maingame.pieceIdBoard[i].PiecePosition;
+                                    suma = 0;
+                                    verific = 0;
+                                    foreach (int valoare in mutari)
                                     {
-                                        suma = suma + valoare;
-                                        if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) != 0)
-                                            verific = 1;
-                                    }
+                                        if (j <= DatelePieselor[oj].MutarilePiesei2.Length - 1 && verific == 0)
 
-                                    if (j == DatelePieselor[oj].MutarilePiesei2.Length - 1)
-                                    {
-
-                                        if (CheckCan(maingame, curent, suma) && verific == 0)
                                         {
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) == 0)
-                                                intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
+                                            if (CheckCan(maingame, curent + suma, valoare))
+                                                suma = suma + valoare;
                                             else
-                                            {
-                                                if (VerificareCuloare(maingame.pieceIdBoard[curent + suma].PieceName) != culoareaPiesei)
-                                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
-
-                                            }
-
-
-                                        }
-
-                                        j = 1;
-                                        suma = 0;
-                                        verific = 0;
-
-
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        capturaLista = GetMutari(DatelePieselor[oj].MutarilePieseiCaptura);
-                        if (DatelePieselor[oj].RaspunsIntrb2 == true)
-                        {
-                            if (DatelePieselor[oj].RaspunsIntrb3 == true)
-                            {
-                                j = 1;
-                                curent = maingame.pieceIdBoard[i].PiecePosition;
-                                verific = 0;
-                                foreach (int valoare in mutari)
-                                {
-                                    if (j >= DatelePieselor[oj].MutarilePiesei2.Length)
-
-                                    {
-                                        j = 1;
-                                        curent = maingame.pieceIdBoard[i].PiecePosition;
-                                        verific = 0;
-
-                                    }
-
-                                    if (j < DatelePieselor[oj].MutarilePiesei2.Length)
-                                    {
-
-                                        if (CheckCan(maingame, curent, valoare) && verific == 0)
-                                        {
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) == 0)
-                                                intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
-
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) != 0)
                                                 verific = 1;
 
-                                            curent = curent + valoare;
                                         }
 
+                                        if (j == DatelePieselor[oj].MutarilePiesei2.Length - 1)
+                                        {
+
+                                            if (verific == 0)
+                                            {
+                                                if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) == 0)
+                                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
+
+
+
+                                            }
+
+                                            j = 0;
+                                            suma = 0;
+                                            verific = 0;
+
+                                        }
                                         j++;
 
                                     }
-
                                 }
-
                             }
-                            else
+                            curent = maingame.pieceIdBoard[i].PiecePosition;
+                            foreach (int pozitie in capturaLista)
                             {
-                                j = 1;
-                                curent = maingame.pieceIdBoard[i].PiecePosition;
-                                foreach (int valoare in mutari)
+                                if (CheckCan(maingame, curent, pozitie))
                                 {
-                                    if (j >= DatelePieselor[oj].MutarilePiesei2.Length)
-
-                                    {
-                                        j = 1;
-                                        curent = maingame.pieceIdBoard[i].PiecePosition;
-
-                                    }
-
-                                    if (j < DatelePieselor[oj].MutarilePiesei2.Length)
-                                    {
-
-                                        if (CheckCan(maingame, curent, valoare))
-                                        {
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) == 0)
-                                                intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
-
-
-                                            curent = curent + valoare;
-                                        }
-
-                                        j++;
-
-                                    }
-
+                                    if (VerificareCuloare(maingame.pieceIdBoard[curent + pozitie].PieceName) != culoareaPiesei)
+                                        intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + pozitie, maingame.pieceIdBoard[i].PieceValue, false));
                                 }
-
-
-                            }
-                        }
-                        else
-                        {
-                            if (DatelePieselor[oj].RaspunsIntrb3 == true)
-                            {
-                                j = 1;
-                                curent = maingame.pieceIdBoard[i].PiecePosition;
-                                suma = 0;
-                                verific = 0;
-                                foreach (int valoare in mutari)
-                                {
-                                    if (j <= DatelePieselor[oj].MutarilePiesei2.Length - 1)
-
-                                    {
-                                        suma = suma + valoare;
-                                        if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) != 0)
-                                            verific = 1;
-                                    }
-
-                                    if (j == DatelePieselor[oj].MutarilePiesei2.Length - 1)
-                                    {
-
-                                        if (CheckCan(maingame, curent, suma) && verific == 0)
-                                        {
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + suma].PieceName) == 0)
-                                                intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + valoare, maingame.pieceIdBoard[i].PieceValue, false));
-
-
-
-                                        }
-
-                                        j = 1;
-                                        suma = 0;
-                                        verific = 0;
-
-
-                                    }
-
-                                }
-                            }
-                            else
-                            {
-                                j = 1;
-                                curent = maingame.pieceIdBoard[i].PiecePosition;
-                                suma = 0;
-                                foreach (int valoare in mutari)
-                                {
-                                    if (j <= DatelePieselor[oj].MutarilePiesei2.Length - 1)
-
-                                    {
-                                        suma = suma + valoare;
-
-                                    }
-
-                                    if (j == DatelePieselor[oj].MutarilePiesei2.Length - 1)
-                                    {
-
-                                        if (CheckCan(maingame, curent, suma))
-                                        {
-                                            if (String.Compare("-", maingame.pieceIdBoard[curent + valoare].PieceName) == 0)
-                                                intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + suma, maingame.pieceIdBoard[i].PieceValue, false));
-
-
-
-                                        }
-
-                                        j = 1;
-                                        suma = 0;
-
-
-                                    }
-
-                                }
-                            }
-                        }
-                        curent = maingame.pieceIdBoard[i].PiecePosition;
-                        foreach (int pozitie in capturaLista)
-                        {
-                            if (CheckCan(maingame, curent, pozitie))
-                            {
-                                if (VerificareCuloare(maingame.pieceIdBoard[curent + pozitie].PieceName) != culoareaPiesei)
-                                    intoarcere.Add(new Mutare(maingame.pieceIdBoard[i].PiecePosition, curent + pozitie, maingame.pieceIdBoard[i].PieceValue, false));
                             }
                         }
                     }
-                }
-        }
+            }
             return intoarcere;
         }
 
@@ -1323,49 +1381,12 @@ namespace Chess
                     return false;
                 else
                     return true;
+            if (curent + valoare < DatePartidaCastig.NumarColoane * DatePartidaCastig.NumarRanduri && curent +valoare >=0)
+                return true;
+            else
+                return false;
             return false;
-            /*switch (valoare)
-            {
-                case 1:
-                    if ((curent + valoare) / DatePartidaCastig.NumarColoane != curent / DatePartidaCastig.NumarColoane || curent + valoare >= DatePartidaCastig.NumarColoane * DatePartidaCastig.NumarRanduri)
-                        return false;
-                    else
-                        return true;
-                    break;
-                case -1:
-                    if ((curent + valoare) / DatePartidaCastig.NumarColoane != curent / DatePartidaCastig.NumarColoane || curent+valoare<0 )
-                        return false;
-                    else
-                        return true;
-                    break;
-                case 8:
-                    if ((curent + valoare) / DatePartidaCastig.NumarColoane - curent / DatePartidaCastig.NumarColoane > 1 ||curent + valoare >= DatePartidaCastig.NumarColoane * DatePartidaCastig.NumarRanduri)
-                        return false;
-                    else
-                        return true;
-                    break;
-                case -8:
-                    if (curent / DatePartidaCastig.NumarColoane - (curent + valoare) / DatePartidaCastig.NumarColoane != 1 || curent + valoare < 0)
-                        return false;
-                    else
-                        return true;
-                    break;
-                case 6:
-                    if ((curent + valoare) / DatePartidaCastig.NumarColoane == curent / DatePartidaCastig.NumarColoane || curent +valoare >= DatePartidaCastig.NumarColoane* DatePartidaCastig.NumarRanduri)
-                        return false;
-                    else
-                        return true;
-                    break;
-                case -6:
-                    if ((curent + valoare) / DatePartidaCastig.NumarColoane == curent / DatePartidaCastig.NumarColoane || curent + valoare < 0 )
-                        return false;
-                    else
-                        return true;
-                    break;
-                default:
-                    return false;
-            }
-            */
+            
             
         }
 
@@ -1374,10 +1395,11 @@ namespace Chess
             List<int> stare = new List<int>();
             List<int> final = new List<int>();
             int numar;
-            for (i=1;i<mutarilePiesei.Length;i++)
+            int kl;
+            for (kl=1;kl<mutarilePiesei.Length;kl++)
             {
                 numar = 0;
-                numar = numar + ((mutarilePiesei[i][1] - mutarilePiesei[i - 1][1]) * DatePartidaCastig.NumarColoane) + (mutarilePiesei[i][0]- mutarilePiesei[i-1][0]);
+                numar = numar + ((mutarilePiesei[kl][1] - mutarilePiesei[kl - 1][1]) * DatePartidaCastig.NumarColoane) + (mutarilePiesei[kl][0]- mutarilePiesei[kl-1][0]);
                 if (numar == DatePartidaCastig.NumarColoane+1)
                     stare.Add(numar);
                 if (numar == DatePartidaCastig.NumarColoane-1)
@@ -1390,10 +1412,10 @@ namespace Chess
             if (stare.Count > 0)
                 final.AddRange(stare);
             stare = new List<int>();
-            for (i = 1; i < mutarilePiesei.Length; i++)
+            for (kl = 1; kl < mutarilePiesei.Length; kl++)
             {
                 numar = 0;
-                numar = numar + ((mutarilePiesei[i][1] - mutarilePiesei[i - 1][1]) * DatePartidaCastig.NumarColoane) + (mutarilePiesei[i][0] - mutarilePiesei[i - 1][0]);
+                numar = numar + ((mutarilePiesei[kl][1] - mutarilePiesei[kl - 1][1]) * DatePartidaCastig.NumarColoane) + (mutarilePiesei[kl][0] - mutarilePiesei[kl - 1][0]);
                 if(numar == DatePartidaCastig.NumarColoane+1)
                     stare.Add(0-numar+2);
                 if(numar == DatePartidaCastig.NumarColoane-1)
@@ -1406,10 +1428,10 @@ namespace Chess
             if (stare.Count > 0)
                 final.AddRange(stare);
             stare = new List<int>();
-            for (i = 1; i < mutarilePiesei.Length; i++)
+            for (kl = 1; kl < mutarilePiesei.Length; kl++)
             {
                 numar = 0;
-                numar = numar + ((mutarilePiesei[i][1] - mutarilePiesei[i - 1][1]) * DatePartidaCastig.NumarColoane) + (mutarilePiesei[i][0] - mutarilePiesei[i - 1][0]);
+                numar = numar + ((mutarilePiesei[kl][1] - mutarilePiesei[kl - 1][1]) * DatePartidaCastig.NumarColoane) + (mutarilePiesei[kl][0] - mutarilePiesei[kl - 1][0]);
                 if (numar == DatePartidaCastig.NumarColoane+1)
                     stare.Add(numar - 2);
                 if (numar == DatePartidaCastig.NumarColoane-1)
@@ -1422,10 +1444,10 @@ namespace Chess
             if (stare.Count > 0)
                 final.AddRange(stare);
             stare = new List<int>();
-            for (i = 1; i < mutarilePiesei.Length; i++)
+            for (kl = 1; kl < mutarilePiesei.Length; kl++)
             {
                 numar = 0;
-                numar = numar + ((mutarilePiesei[i][1] - mutarilePiesei[i - 1][1]) * DatePartidaCastig.NumarColoane) + (mutarilePiesei[i][0] - mutarilePiesei[i - 1][0]);
+                numar = numar + ((mutarilePiesei[kl][1] - mutarilePiesei[kl - 1][1]) * DatePartidaCastig.NumarColoane) + (mutarilePiesei[kl][0] - mutarilePiesei[kl - 1][0]);
                 if (numar == DatePartidaCastig.NumarColoane+1)
                     stare.Add(0-numar );
                 if (numar == DatePartidaCastig.NumarColoane-1)
@@ -1639,7 +1661,7 @@ namespace Chess
                     return true;
                 }
             }
-            returnareLista = CeaMaiBunaMutare.EvaluareMutare(3, m);
+            returnareLista = CeaMaiBunaMutare.EvaluareMutare(2, m);
             CuloarePiesa culoare = CuloarePiesa.Negru ;
             if (m.DatePartidaCastig.Culoare == CuloarePiesa.Negru)
                 culoare = CuloarePiesa.Alb;
@@ -1653,8 +1675,10 @@ namespace Chess
                         LastMove.To = returnareLista[0].To;
                         PozitiaDeStartAPiesei = returnareLista[0].From;
                         BlackInCheck = -1;
-
+                        this.pieceIdBoard[returnareLista[0].To].BackColor = Color.Cyan;
+                        this.pieceIdBoard[returnareLista[0].From].BackColor = Color.Cyan;
                         UpdateTabla(returnareLista[0].To);
+                        
                         return true;
                     }
 
@@ -1671,6 +1695,8 @@ namespace Chess
                         LastMove.To = returnareLista[i].To;
                         PozitiaDeStartAPiesei = returnareLista[i].From;
                         BlackInCheck = -1;
+                        this.pieceIdBoard[returnareLista[i].To].BackColor = Color.Cyan;
+                        this.pieceIdBoard[returnareLista[i].From].BackColor = Color.Cyan;
                         UpdateTabla(returnareLista[i].To);
                         return true;
                     }

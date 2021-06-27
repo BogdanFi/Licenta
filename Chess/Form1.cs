@@ -62,7 +62,7 @@ namespace Chess
 
         private void btn_IncarcareJoc_Click(object sender, EventArgs e)
         {
-            
+            int ok = 0;
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Filter = "Text files (*.txt)|*.txt";
             if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -81,15 +81,20 @@ namespace Chess
                         i++;
                     }
                     stream.Close();
+                    
                 }
                 catch(Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    MessageBox.Show("Fișier invalid");
+                    ok = 1;
                 }
-                this.Hide();
-                MainGame jocnou = new MainGame();
-                jocnou.SetValue(1);
-                jocnou.ShowDialog();
+                if (ok ==0)
+                {
+                    this.Hide();
+                    MainGame jocnou = new MainGame();
+                    jocnou.SetValue(1);
+                    jocnou.ShowDialog();
+                }
             }
         }
 

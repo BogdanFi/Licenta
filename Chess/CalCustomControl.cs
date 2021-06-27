@@ -236,7 +236,9 @@ namespace Chess
                             break;
                         }
                     }
-                DatePiesa.MutarilePiesei2 = b;
+                if (b.Length != 1)
+                    DatePiesa.MutarilePiesei2 = b;
+                
                 DatePiesa.Save = true;
                 DatePiesa.NumelePiesei = string.Copy("Calul");
                 RadioButton raspuns1 = RadioButtonHelper.GetCheckedRadio(groupBox1);
